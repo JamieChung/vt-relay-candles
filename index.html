@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		
+
+		<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+
+		<script src="http://code.jquery.com/jquery-1.7.2.js"></script>
+
+		<script src="js/underscore.js"></script>
+		<script src="js/backbone.js"></script>
+
+	</head>
+	<body>
+		<div class="container">
+			<header>
+				<a href="#">Home</a>
+				<a href="#teams">Teams</a>
+				<a href="#participants">Participants</a>
+			</header>
+			<div id="content">
+
+			</table>
+		</div>
+
+		<script type="text/template" id="participants-template">
+			<h2>Participants</h2>
+			<table class="table table-stripped">
+				<thead>
+					<th>Name</th>
+				</thead>
+				<tbody>
+					<% _.each(participants, function(participant){ %>
+					<tr>
+						<td>
+							<a href="#participant/<%= participant.get('id') %>">
+								<%= participant.get('first_name') %>
+								<%= participant.get('last_name') %>
+							</a>
+						</td>
+						<td>
+							<a href="#team/<%= participant.get('team_id') %>">View Team &raquo;</a>
+						</td>
+					</tr>
+					<% }); %>
+				</tbody>
+			</table>
+		</script>
+
+
+		<script type="text/template" id="participant-template">
+			<h2>
+			<%= participant.get('participant_first_name') %>
+			<%= participant.get('participant_last_name') %></h2>
+			<blockquote>
+				<strong>Total Candles</strong>
+				<%= participant.get('participant_candles_total') %>
+			</blockquote>
+			<blockquote>
+				<strong>Donation Candles</strong>
+				<%= participant.get('participant_donation_milestone_candles') %>
+			</blockquote>
+			<blockquote>
+				<strong>Email Candles</strong>
+				<%= participant.get('participant_email_milestone_candles') %>
+			</blockquote>
+			<blockquote>
+				<strong>Event Candles</strong>
+				<%= participant.get('participant_event_milestone_candles') %>
+			</blockquote>
+		</script>
+
+		<script type="text/template" id="team-participants-template">
+			<h1>Team <%= team_id %></h1>
+			<table class="table table-stripped">
+				<thead>
+					<th>Name</th>
+					<th>Total Candles</th>
+					<th>Donation Candles</th>
+					<th>Email Candles</th>
+					<th>Event Candles</th>
+				</thead>
+				<tbody>
+					<% _.each(participants, function(participant){ %>
+					<tr>
+						<td>
+							<%= participant.get('participant_first_name') %>
+							<%= participant.get('participant_last_name') %> 
+						</td>
+						<td>
+							<%= participant.get('participant_candles_total') %>
+						</td>
+						<td>
+							<%= participant.get('participant_donation_milestone_candles') %>
+						</td>
+						<td>
+							<%= participant.get('participant_email_milestone_candles') %>
+						</td>
+						<td>
+							<%= participant.get('participant_event_milestone_candles') %>
+						</td>
+
+					</tr>
+					<% }) %>
+				</tbody>
+			</table>
+		</script>
+
+		<script type="text/template" id="teams-table-template">
+			<h2>Teams</h2>
+			<table class="table table-stripped">
+				<thead>
+					<th>Name</th>
+				</thead>
+				<tbody>
+					<% _.each(teams, function(team){ %>
+					<tr>
+						<td>
+						<a href="#team/<%= team.get('team_id') %>">
+							<%= team.get('team_name') %>
+						</a>
+						</td>
+					</tr>
+					<% }); %>
+				</tbody>
+			</table>
+		</script>
+		<script src="js/app.js"></script>
+	</body>
+</html>
