@@ -159,6 +159,7 @@ app_router.on('route:getTeams', function(){
 	teams_table_view.render();
 });
 app_router.on('route:defaultRoute', function(){
+	setupPage();
 });
 
 // Start Backbone history a necessary step for bookmarkable URL's
