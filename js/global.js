@@ -112,7 +112,6 @@ $(document).ready(function () {
             $("#feedbackBody").slideUp();
             $("#feedbackBody").removeClass("up");
         }
-
     });
 });
 

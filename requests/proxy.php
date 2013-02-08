@@ -7,6 +7,7 @@
 */
 
 header('Content-type: application/json');
+$cached = false;
 
 $contents = json_encode(array());
 
@@ -17,7 +18,7 @@ if ( $parsed = parse_url($url) )
 	{
 		$cached_url = 'cached/'.md5($url);
 
-		if ( file_exists($cached_url) )
+		if ( file_exists($cached_url) && $cached )
 		{
 			$contents = file_get_contents($cached_url);
 		}
