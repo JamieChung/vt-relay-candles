@@ -115,6 +115,41 @@ $(document).ready(function () {
     });
 });
 
+function sendemail() {
+    p = document.getElementById("problemIn").value;
+    e = document.getElementById("emailIn").value;
+    $.post("mail.php", {
+        problem: p,
+        email: e
+    },
+
+    function () {
+        alert("Thank You for your Feedback!");
+        resetFeedback();
+    });
+}
+
+function sendComment() {
+    c = document.getElementById("commentIn").value;
+    $.post("comment.php", {
+        comment: c
+    },
+
+    function () {
+        alert("Thank You for your Feedback!");
+        resetFeedback();
+    });
+}
+
+function resetFeedback() {
+    document.getElementById("commentIn").value = "";
+    document.getElementById("problemIn").value = "";
+    document.getElementById("emailIn").value = "";
+    $("#feedbackBody").slideUp();
+    $("#feedbackBody").removeClass("up");
+}
+
+
 
 //Column sorting
 

@@ -624,6 +624,7 @@
 		float:left;
 		height:350px;
 		width:100%;
+		overflow: hidden;
 		}
 		#pagesCheck #forScroll #table {
 			float:left;
@@ -748,7 +749,7 @@
 		
 		
 		
-		#pagesCheck #forScroll #table #team_table_body .teamRow #teamRowPosition {
+		#pagesCheck #forScroll #table #team_table_body .teamRow .teamRowPosition {
 			float:left;
 			text-align:center;
 			width:48px;
@@ -768,25 +769,25 @@
 		table {
 		border-spacing:0px;
 		}
-		#pagesCheck #forScroll #table #team_table_body .teamRow #teamRowMilestone {
+		#pagesCheck #forScroll #table #team_table_body .teamRow .teamRowMilestone {
 		float:left;
 		border:none;
 		width:112px;
 		text-align:center;
 		}
-		#pagesCheck #forScroll #table #team_table_body .teamRow #teamRowEmails {
+		#pagesCheck #forScroll #table #team_table_body .teamRow .teamRowEmails {
 		float:left;
 		border:none;
 		width:112px;
 		text-align:center;
 		}
-		#pagesCheck #forScroll #table #team_table_body .teamRow #teamRowEvents {
+		#pagesCheck #forScroll #table #team_table_body .teamRow .teamRowEvents {
 		float:left;
 		border:none;
 		width:112px;
 		text-align:center;
 		}
-		#pagesCheck #forScroll #table #team_table_body .teamRow #teamRowTotal {
+		#pagesCheck #forScroll #table #team_table_body .teamRow .teamRowTotal {
 		float:left;
 		margin-left:26px;
 		border:none;

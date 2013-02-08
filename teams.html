@@ -8,12 +8,13 @@
 		</title>
 		<link rel="shortcut icon" href="img/VT_Relay_Logo_bday_curved_favicon.png">
 		<link href="css/Css.css" rel="stylesheet" type="text/css"><!-- Custom scrollbars CSS -->
-		<link href="css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css"><!-- Get Google CDN's jQuery and jQuery UI with fallback to local 
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<link href="css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css">
+		<!-- Get Google CDN's jQuery and jQuery UI with fallback to local 
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>	
+			<script src="js/jquery.js" type="text/javascript"></script>
 		-->
 
-		<script src="js/jquery.js" type="text/javascript"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
 		<script src="js/underscore.js" type="text/javascript"></script>
 		<script src="js/backbone.js" type="text/javascript"></script>
@@ -142,45 +143,50 @@
 					</div><!-- end feedbackBody -->
 				</div><!-- end feedback -->
 			</div><!-- end main -->
-		</div><script src="js/app.js" type="text/javascript">
-</script><script type="text/javascript">
-function sendemail(){
-		p = document.getElementById("problemIn").value;
-		e = document.getElementById("emailIn").value;
-		$.post("mail.php", { problem: p, email: e },
-		function(){
-			alert("Thank You for your Feedback!");
-			resetFeedback();
-		});
-		}
+		</div>
+		<script src="js/app.js" type="text/javascript"></script>
+		<script type="text/javascript">
 
-		function sendComment(){
-		c = document.getElementById("commentIn").value;
-		$.post("comment.php", { comment: c},
-		function(){
-			alert("Thank You for your Feedback!");
-			resetFeedback();
-		});
-		}
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-36920407-1']);
+			_gaq.push(['_trackPageview']);
 
-		function resetFeedback(){
-		document.getElementById("commentIn").value = "";
-		document.getElementById("problemIn").value = "";
-		document.getElementById("emailIn").value = "";
-		$("#feedbackBody").slideUp();
-		$("#feedbackBody").removeClass("up");
-		}
-
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-36920407-1']);
-		_gaq.push(['_trackPageview']);
-
-		(function() {
-		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
+			(function () {
+			    var ga = document.createElement('script');
+			    ga.type = 'text/javascript';
+			    ga.async = true;
+			    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			    var s = document.getElementsByTagName('script')[0];
+			    s.parentNode.insertBefore(ga, s);
+			})();
 
 		</script>
+		<script type="text/template" id="teams-list-row-template">
+			<% _.each(teams, function(team){ %>
+			<tr class="teamRow" id="team-<%= team.get('team_id') %>">
+				<td class="teamRowPosition"><%= team.get('position') %></td>
+				<td class="teamRowFirstName">
+					<a href="#team/<%= team.get('team_id') %>">
+						<%= team.get('team_name') %>
+					</a>
+				</td>
+				<td class="teamRowMilestone"><%= team.get('team_donation_milestone_candles') %></td>
+				<td class="teamRowEmails"><%= team.get('team_email_milestone_candles') %></td>
+				<td class="teamRowEvents"><%= team.get('team_event_milestone_candles') %></td>
+				<td class="teamRowTotal"><%= team.get('team_candles_total') %></td>
+			</tr>
+			<% }); %>
+		</script>
+		<script type="text/template" id="teams-table-template">
+			<h2>Teams</h2>
+			<table class="table table-stripped">
+				<thead>
+					<th>Name</th>
+				</thead>
+				<tbody>
+
+				</tbody>
+			</table>
+		</script>		
 	</body>
 </html>

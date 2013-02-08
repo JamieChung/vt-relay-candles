@@ -19,6 +19,27 @@ TeamsTableView = Backbone.View.extend({
 	}
 });
 
+
+TeamsListView = Backbone.View.extend({
+	el: $('#team_table_body'),
+	render: function(){
+		var that = this;
+
+		TeamsCollection.fetch({
+			success: function(teams){
+				$("#loadingImg").hide();
+
+				$(that.el).html(
+					_.template($('#teams-list-row-template').html(),
+						{teams: teams.models}));
+
+			    jQuery("#forScroll").mCustomScrollbar("update");
+			}
+		});
+	}
+});
+
+
 TeamParticipantsView = Backbone.View.extend({
 
 	el: $('#content'),
@@ -158,8 +179,10 @@ app_router.on('route:getTeams', function(){
 	var teams_table_view = new TeamsTableView();
 	teams_table_view.render();
 });
+
 app_router.on('route:defaultRoute', function(){
-	setupPage();
+	var teams_list_view = new TeamsListView();
+	teams_list_view.render();
 });
 
 // Start Backbone history a necessary step for bookmarkable URL's
