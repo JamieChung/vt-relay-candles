@@ -52,7 +52,6 @@ function sortResult(data) {
 }
 
 // Search bar
-
 $(document).ready(function ($) {
     jQuery.expr[":"].contains = jQuery.expr.createPseudo(function (arg) {
         return function (elem) {
