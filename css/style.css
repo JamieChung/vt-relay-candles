@@ -2123,3 +2123,146 @@ table
 {
 	display: none;
 }
+.personalBox
+{
+	float: left;
+	height: 177px;
+	margin: 20px;
+	width: 395px;
+}
+.personalBodyHeader
+{
+	background-image: url(../img/individual_sorter_bkg_09.png);
+	height: 28px;
+	width: 395px;
+}
+.personalTab
+{
+	background-image: url(../img/individual_title_small_bkg_09.png);
+	color: white;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	height: 27px;
+	line-height: 30px;
+	margin: 0 20px;
+	text-indent: 20px;
+	width: 120px;
+}
+.personalBody
+{
+	box-shadow: 0px 4px 5px #222222;
+	color: white;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	height: 149px;
+	width: 395px;
+}
+.personalTable tr td
+{
+	height: 20px;
+}
+.personalTable
+{
+	height: 28px;
+	width: 395px;
+}
+.personalTable tr th
+{
+	height: 28px;
+}
+.personalTableLarge
+{
+	text-align: left;
+	text-indent: 20px;
+	width: 195px;
+}
+.personalTableLargeOne
+{
+	text-align: left;
+	text-indent: 20px;
+	width: 295px;
+}
+.personalTableSmall
+{
+	text-align: center;
+	width: 100px;
+}
+.personalTableEnd
+{
+	border-left: 1px solid black;
+	text-align: center;
+	width: 100px;
+}
+.personalTableEndOne
+{
+	text-align: center;
+	width: 100px;
+}
+.personalBodyTop
+{
+	height: 127px;
+	overflow: hidden;
+}
+.personalBodySpace
+{
+	border-left: 1px solid black;
+	float: right;
+	height: 127px;
+	width: 100px;
+}
+.personalBodyBottomLarge
+{
+	float: left;
+	height: 22px;
+	line-height: 25px;
+	text-indent: 20px;
+	width: 195px;
+}
+.personalBodyBottomSmall
+{
+	background-image: url(../img/individual_total_bkg_09.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	float: left;
+	height: 22px;
+	line-height: 25px;
+	text-align: center;
+	width: 99px;
+}
+.personalBodyBottomEnd
+{
+	background-image: url(../img/individual_total_bkg_09.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	border-left: 1px solid black;
+	float: right;
+	height: 22px;
+	line-height: 25px;
+	text-align: center;
+	width: 100px;
+}
+.personalBodyBottomEndOne
+{
+	background-image: url(../img/individual_total_bkg_09.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	float: right;
+	height: 22px;
+	line-height: 25px;
+	text-align: center;
+	width: 100px;
+}
+.personalBodyTop .forScroll
+{
+	height: 90px;
+	width: 100%;
+}
+.personalTableFirstRow
+{
+	padding-top: 5px;
+}
+.personalBodyBottom
+{
+	width: 100%;
+}

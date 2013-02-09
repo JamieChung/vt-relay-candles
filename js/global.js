@@ -153,12 +153,6 @@ function resetFeedback() {
 
 //Column sorting
 
-//$('#sorterHeader tr th').hover(function() {
-//$(this).addClass
-
-
-
-
 $(function () {
     $('#sorterHeader tr th').click(function () {
         var id = $(this).attr('id');
@@ -177,9 +171,11 @@ $(function () {
 
 function sortResults(prop, asc) {
     arr = info;
+
     arr = arr.sort(function (a, b) {
-        var thing1 = a[prop];
-        var thing2 = b[prop];
+        var thing1 = a.get(prop);
+        var thing2 = b.get(prop);
+
         if (thing1 instanceof String) {
             thing1 = thing1.toLowerCase();
             thing2 = thing2.toLowerCase();
@@ -191,7 +187,7 @@ function sortResults(prop, asc) {
             if (thing1 < thing2) {
                 return -1;
             } else {
-                return (compareThings(a["team_name"], b["team_name"]));
+                return (compareThings(a.get("team_name"), b.get("team_name")));
             }
         } else {
             if (thing2 > thing1) {
@@ -200,7 +196,7 @@ function sortResults(prop, asc) {
             if (thing2 < thing1) {
                 return -1;
             } else {
-                return (compareThings(a["team_name"], b["team_name"]));
+                return (compareThings(a.get("team_name"), b.get("team_name")));
             }
         }
 
@@ -225,9 +221,9 @@ function compareThings(thing1, thing2) {
 
 function showResults(arr) {
     var html = '';
-    for (var e in arr) {
-        items = arr[e];
-        html += "<tr class='teamRow' id=" + e + "><td id='teamRowPosition'>" + items.position + "</td><td class='teamRowFirstName'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + items.team_name + "</td><td id='teamRowMilestone'>" + items.team_donation_milestone_candles + "</td><td id='teamRowEmails'>" + items.team_email_milestone_candles + "</td><td id='teamRowEvents'>" + items.team_event_milestone_candles + "</td><td id='teamRowTotal'>" + items.team_candles_total + "</td></tr>";
-    }
-    $('#team_table_body').html(html);
+
+    $('#team_table_body').html(
+                _.template($('#teams-list-row-template').html(),
+                    {teams: arr}));
+
 }

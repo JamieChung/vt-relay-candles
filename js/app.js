@@ -13,6 +13,8 @@ TeamsListView = Backbone.View.extend({
 					_.template($('#teams-list-row-template').html(),
 						{teams: teams.models}));
 
+				info = _.toArray(teams.models);
+
 			    jQuery("#forScroll").mCustomScrollbar("update");
 			}
 		});
