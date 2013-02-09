@@ -1,25 +1,5 @@
 var __proxy = 'requests/proxy.php?__url=';
 
-TeamsTableView = Backbone.View.extend({
-	el: $('#content'),
-
-	render: function(){
-		var that = this;
-
-		TeamsCollection.fetch({
-			success: function(teams){
-				$(that.el).html(
-					_.template(
-						$('#teams-table-template').html(),
-						{teams: teams.models}
-					)
-				);
-			}
-		});
-	}
-});
-
-
 TeamsListView = Backbone.View.extend({
 	el: $('#team_table_body'),
 	render: function(){
@@ -173,11 +153,6 @@ app_router.on('route:getTeam', function(id){
 	$('#content').empty();
 	var team_participants_view = new TeamParticipantsView();
 	team_participants_view.render(id);
-});
-app_router.on('route:getTeams', function(){
-	$('#content').empty();
-	var teams_table_view = new TeamsTableView();
-	teams_table_view.render();
 });
 
 app_router.on('route:defaultRoute', function(){
