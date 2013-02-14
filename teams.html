@@ -12,8 +12,8 @@
 		<!-- Custom scrollbars CSS -->
 		<link href="css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css">
 
-		<!-- Get Google CDN's jQuery and jQuery UI with fallback to local 
-			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>	
+		<!-- Get Google CDN's jQuery and jQuery UI with fallback to local
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
 			<script src="js/jquery.js" type="text/javascript"></script>
 		-->
 
@@ -85,13 +85,14 @@
 						<ul id="pagesBack">
 							<!-- <li class="pagesBackLink"><a href="#">Individual</a>&nbsp;-</li> -->
 							<li class="pagesBackLink">
-								<a href="teamList.html">General Teams</a>&nbsp;-
+								<a href="teams.html#">General Teams</a>&nbsp;-
 							</li>
 							<li class="pagesBackLink">
 								<a href="home.html">Home</a>
 							</li>
 						</ul>
-					</div><label class="search">Search:&nbsp;&nbsp;<input id="searchBox" type="text" name="teamName"></label>
+					</div>
+					<div id="search-area"><label class="search">Search:&nbsp;&nbsp;<input id="searchBox" type="text" name="teamName"></label></div>
 					<div id="pagesCheck">
 						<table id="sorterHeader">
 							<tr>
@@ -180,16 +181,29 @@
 			</tr>
 			<% }); %>
 		</script>
-		<script type="text/template" id="teams-table-template">
-			<h2>Teams</h2>
-			<table class="table table-stripped">
-				<thead>
-					<th>Name</th>
-				</thead>
-				<tbody>
+		<script type="text/template" id="participants-title-template">
+			<a href="teams.html#">Teams</a> &raquo; <%= team.get('team_name') %>
+		</script>
+		<script type="text/template" id="participants-list-row-template">
+			<% _.each(participants, function(p){ %>
+			<tr class="teamRow" id="participant-<%= p.get('participant_id') %>">
+				<td class="teamRowPosition"><%= p.get('position') %></td>
+				<td class="teamRowFirstName">
+					<a href="teams.html#/participant/<%= p.get('participant_id') %>">
+						<%= p.get('participant_first_name') %>
+						<%= p.get('participant_last_name') %>
+					</a>
+				</td>
+				<td class="teamRowOther"><%= p.get('participant_donation_milestone_candles') %></td>
+				<td class="teamRowOther"><%= p.get('participant_email_milestone_candles') %></td>
+				<td class="teamRowOther"><%= p.get('participant_event_milestone_candles') %></td>
+				<td class="teamRowOther"><%= p.get('participant_candles_total') %></td>
+			</tr>
+			<% }); %>
+		</script>
 
-				</tbody>
-			</table>
-		</script>		
+		<script type="text/template" id="participant-single-template">
+			<h3>Name</h3>
+		</script>
 	</body>
 </html>

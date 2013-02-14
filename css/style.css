@@ -2266,3 +2266,12 @@ table
 {
 	width: 100%;
 }
+#pagesHeaderTxt a
+{
+	color:white;
+	text-decoration: underline;
+}
+#pagesHeaderTxt a:hover
+{
+	text-decoration: none;
+}

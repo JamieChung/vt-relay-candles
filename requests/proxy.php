@@ -14,7 +14,7 @@ $contents = json_encode(array());
 $url = $_GET['__url'];
 if ( $parsed = parse_url($url) )
 {
-	if ( $parsed['host'] == 'vtrelay.alwaysdata.net' )
+	if ( $parsed['host'] == 'www.vtrelaycandles.org' )
 	{
 		$cached_url = 'cached/'.md5($url);
 
