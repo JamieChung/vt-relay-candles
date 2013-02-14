@@ -1,9 +1,18 @@
-var __proxy = 'requests/proxy.php?__url=';
+// var __proxy = 'requests/proxy.php?__url=http://www.vtrelaycandles.org';
+var __proxy = 'requests/proxy.php?__url=http://localhost:8000';
 
+// #
+// Default route
 TeamsListView = Backbone.View.extend({
 	el: $('#team_table_body'),
 	render: function(){
 		var that = this;
+
+		$(this.el).empty();
+		$('#loadingImg').show();
+		$('#search-area, #sorterHeader, #forScroll').show();
+		$('#team_name').text('Team Name');
+		$('#pagesHeaderTxt').text('General Teams');
 
 		TeamsCollection.fetch({
 			success: function(teams){
@@ -15,34 +24,60 @@ TeamsListView = Backbone.View.extend({
 
 				info = _.toArray(teams.models);
 
-			    jQuery("#forScroll").mCustomScrollbar("update");
+				jQuery("#forScroll").mCustomScrollbar("update");
 			}
 		});
 	}
 });
 
-
-TeamParticipantsView = Backbone.View.extend({
-
-	el: $('#content'),
+// #/team/:id
+//View for listing participants in a team
+ParticipantsListView = Backbone.View.extend({
+	el: $('#team_table_body'),
 	render: function(id){
 		var that = this;
 
-		TeamParticipantsCollection.team_id = id;
-		TeamParticipantsCollection.fetch({
-			success: function(participants){
-				vars = {team_id : id, participants: participants.models};
-				$(that.el).html(_.template($('#team-participants-template').html(), vars));
+		$(this.el).empty();
+		$('#loadingImg').show();
+		$('#search-area, #sorterHeader, #forScroll').show();
+		$('#team_name').text('Participant Name');
+
+		var t = new Team({id: id}).fetch({
+			success: function(team){
+
+				$('#pagesHeaderTxt').html(
+					_.template($('#participants-title-template').html(), {
+						team: team
+					}));
+
+				TeamParticipantsCollection.team_id = id;
+				TeamParticipantsCollection.fetch({
+					success: function(participants){
+						$('#loadingImg').hide();
+
+						// console.log(participants.models);
+
+						$(that.el).html(
+							_.template($('#participants-list-row-template').html(), {
+								participants: participants.models
+							}));
+						info = _.toArray(participants.models);
+						    jQuery("#forScroll").mCustomScrollbar("update");
+					}
+				});
 			}
-		})
+		});
 	}
 });
 
-ParticipantView = Backbone.View.extend({
+// #/participant/:id
+// View of a single participant
+ParticipantSingleView = Backbone.View.extend({
 	el: $('#content'),
 	render: function(id){
 		var that = this;
 		var P = new Participant({id: id});
+		$('#search-area, #sorterHeader, #forScroll').hide();
 		P.fetch({
 			success: function(participant){
 				vars = {
@@ -50,111 +85,66 @@ ParticipantView = Backbone.View.extend({
 					participant: participant
 				};
 
-				$(that.el).html(_.template($('#participant-template').html(), vars));
+				// console.log
+
+				// $(that.el).html(_.template($('#participant-template').html(), vars));
 			}
 		});
 
 	}
 });
 
-ParticipantsView = Backbone.View.extend({
-	el: $('#content'),
-	render: function(){
-		var that = this;
-
-		ParticipantsCollection.fetch({
-			success: function(participants){
-				vars =  {
-					participants: participants.models
-				};
-				$(that.el).html(_.template($('#participants-template').html(), vars));
-			}
-		});
-	}
-});
 
 Participant = Backbone.Model.extend({
 	url: function(){
-		return __proxy + 'http://vtrelay.alwaysdata.net/participants/' + this.id + '/';
+		return __proxy + '/participants/specific/' + this.id + '/';
 	}
 });
 
-
 Team = Backbone.Model.extend({
-
+	url: function(){
+		return __proxy + '/teams/candles/' + this.id + '/';
+	}
 });
 
 Teams = Backbone.Collection.extend({
-	url: 'requests/teams.candles.all.json',
+	url: __proxy + '/teams/candles/all/',
 	model: Team
 });
 
 
 TeamParticipants = Backbone.Collection.extend({
 	url: function(){
-		return __proxy + 'http://vtrelay.alwaysdata.net/team/specific/candles/' + this.team_id + '/';
+		return __proxy + '/team/specific/candles/' + this.team_id + '/';
 	},
 	team_id: 0,
-	model: Participant
-});
-
-Participants = Backbone.Collection.extend({
-	url: function(){
-		return __proxy + 'http://vtrelay.alwaysdata.net/participants/all/';
-	},
-	parse: function(response){
-		var p = [];
-		_.forEach(response, function(el, i){
-			p.push({
-				first_name: el.fields.fname,
-				last_name: el.fields.lname,
-				team_id: el.fields.team,
-				id: el.pk
-			});
-		});
-
-		return p;
-	},
 	model: Participant
 });
 
 
 var TeamsCollection = new Teams();
 var TeamParticipantsCollection = new TeamParticipants();
-var ParticipantsCollection = new Participants();
 
 var AppRouter = Backbone.Router.extend({
 	routes: {
+		// 'participants': 'getParticipants',
 		'participant/:id': 'getParticipant',
-		'participants': 'getParticipants',
-		'team/:id': 'getTeam',
+		'team/:id': 'getParticipants',
 		'teams': 'getTeams',
 		'*actions': 'defaultRoute'
 	}
 });
 
-// Backbone.emulateHTTP = true;
-// Backbone.emulateJSON = true;
-
 var app_router = new AppRouter;
 
 app_router.on('route:getParticipant', function(id){
-	$('#content').empty();
-	var participant_view = new ParticipantView();
-	participant_view.render(id);
+	var participant_single_view = new ParticipantSingleView();
+	participant_single_view.render(id);
 });
 
-
-app_router.on('route:getParticipants', function(){
-	$('#content').empty();
-	var participants_view = new ParticipantsView();
-	participants_view.render();
-});
-
-app_router.on('route:getTeam', function(id){
-	$('#content').empty();
-	var team_participants_view = new TeamParticipantsView();
-	team_participants_view.render(id);
+app_router.on('route:getParticipants', function(id){
+	var participants_list_view = new ParticipantsListView();
+	participants_list_view.render(id);
 });
 
 app_router.on('route:defaultRoute', function(){
