@@ -10,9 +10,9 @@
     <link href="css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
 
 
-	
+
 	<!-- Scrollbar -->
-	
+
 	<!-- Get Google CDN's jQuery and jQuery UI with fallback to local -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
@@ -20,12 +20,12 @@
     <script src="js/jquery.mousewheel.min.js"></script>
     <!-- custom scrollbars plugin -->
     <script src="js/jquery.mCustomScrollbar.js"></script>
-	
-</head>	
+
+</head>
 	<script>
-	
+
 	//Scrollbar
-	
+
 	(function($){
 	    $(window).load(function () {
 	        window.setTimeout(function () {
@@ -34,7 +34,7 @@
 	        }, 1000);
         });
 	})(jQuery);
-	
+
 		$(document).ready(function(){
 			$("#system").addClass("highlight");
   			$(".tab").on("click",function(){
@@ -45,7 +45,7 @@
 				$("[name='"+name+"']").show();
 			});
 		}); //end document ready
-	  
+
 	</script>
 
 
@@ -57,13 +57,13 @@
 				setupTable(data);
 			});
 		}*/
-		
-		
+
+
 		//var txt = '{"fields": [' + '{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},' + '{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},' + '{"signup": false, "lname": "Welch", "points": 0, "donations": "0.00", "fname": "Scott", "team": "", "email": "kar@vt.edu"},'+'{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},' + '{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},'+'{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},' + '{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},'+'{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},' + '{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},'+'{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},' + '{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},'+'{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},' + '{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},'+'{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},' + '{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},'+'{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},' + '{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},'+'{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},' + '{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},'+'{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},' + '{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},'+'{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},' + '{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"}]}'
-		
+
 	    //var obj = eval ("(" + txt + ")");
 	    /*var obj;
-		
+
 	    $(document).ready(function ($) {
 	        $.get("http://vtrelay.alwaysdata.net/teams/candles/all/", function (data, status) {
 	            for (var item in data) {
@@ -89,8 +89,8 @@
 				document.getElementById("team_table_body").innerHTML = string;
 	        });
 		});*/
-				
-	$(document).ready(function ($) {			
+
+	$(document).ready(function ($) {
 		var string = "";
 		for(x in obj.fields){
 			string = string +	"<tr id='"+x+"'><td style='text-align:left;padding:5px 0 0 20px;'>"+obj.fields[x].fname+" "+obj.fields[x].lname+"</td></tr>";
@@ -98,12 +98,12 @@
 					alert(string);
 		document.getElementById("team_table_body").innerHTML = string;
 	});
-		
+
 
 
 //Feedback slide up
-		
-		
+
+
 		$(document).ready(function () {
 		    $("#feedbackTab").click(function (event) {
 		        if ($("#feedbackBody").hasClass("up")) {
@@ -141,7 +141,7 @@ jQuery.expr[":"].contains = jQuery.expr.createPseudo(function(arg) {
   });
   function listFilter(list) {
     var input = $("#searchBox");
- 
+
     $(input)
       .change( function () {
         var filter = $(this).val();
@@ -158,43 +158,43 @@ jQuery.expr[":"].contains = jQuery.expr.createPseudo(function(arg) {
         $(this).change();
     });
   }
- 
+
   $(function () {
     listFilter($(".teamRow"));
   });
 }(jQuery));
-			
+
 			/*function setupTable(data)
 		{
-			for(item in data) 
+			for(item in data)
 			{
 				record = data[item]
 				$("#team_table_body").append("<tr><td style='text-align:left;padding:10px 0 0 20px;'>"+record.fields.name+"</td><td> </td><td> "+record.fields.team_type+"</td><td></td><td> </td></tr>");
 			}
 		}
 		*/
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
 			//Column sorting
 arr = obj;
 $(function() {
     $('#sorterHeader tr th').click(function() {
         var id = $(this).attr('id');
         var asc = (!$(this).attr('asc')); // switch the order, true if not set
-        
+
         // set asc="asc" when sorted in ascending order
         $('#sorterHeader tr th').each(function() {
             $(this).removeAttr('asc');
         });
         if (asc) $(this).attr('asc', 'asc');
-        
+
         sortResults(id, asc);
     });
-        
+
     showResults();
 });
 
@@ -215,10 +215,10 @@ function showResults () {
 }
 
 	</script>
-    
+
 <link href="css/Css.css" rel="stylesheet" type="text/css" />
 <body id="container" onload="">
-	<div id="main"> 
+	<div id="main">
 		<div id="top">
 			<div id="header">
 				<div id="links">
@@ -243,7 +243,7 @@ function showResults () {
                     <a href="corpsList.html" id="corpsDown" class="pagesLink"></a>
                 </div><!-- end pagesLinks -->
 				</div><!-- end header -->
-			
+
 			<!-- <div class="loggedIn">
 				<p class="loggedIn">Scott Welch | <a class ="signOut" href="#">Sign Out</a></p>
 			</div> -->
@@ -252,11 +252,11 @@ function showResults () {
 					<h2 id="pagesHeaderTxt">Greek Companies</h2>
                     <ul id="pagesBack">
                     	<li class="pagesBackLink"><a href="howitworks_general.html">General Teams</a>&nbsp;-</li>
-                   		<li class="pagesBackLink"><a href="howitworks.html">How It Works</a>&nbsp;-</li> 
+                   		<li class="pagesBackLink"><a href="howitworks.html">How It Works</a>&nbsp;-</li>
                     	<li class="pagesBackLink"><a href="home.html">Home</a></li>
                     </ul>
 				</div>
-                
+
                 <div id="greekExplanation">
                 	<div id="tabs">
                     	<div id="system" class="tab" name="cool" onclick="">
@@ -307,9 +307,9 @@ Ex.  20% of your company buys the bar crawl t-shirt.  Your company receives 300 
                             </div><!-- end way -->
                         </div><!-- end waysBottom -->
                     </div><!-- end cool -->
-                    
-                    
-                    
+
+
+
                     <div class="text hideTab" id="sweet" name="sweet">
                     	<div id="milestones">
                         	<h3>Donation Candle Value</h3>
@@ -322,9 +322,9 @@ Ex.  20% of your company buys the bar crawl t-shirt.  Your company receives 300 
 </p>
                         </div><!-- end milestoneDescription -->
                     </div><!-- end sweet -->
-                    
-                    
-                    
+
+
+
                     <div class="text hideTab" id="awesome" name="awesome">
                     	<div id="emails">
                         	<h3>Registration Candle Value</h3>
@@ -344,8 +344,8 @@ Ex.  You have 40% of your chapter signed up for Relay by March 20th.  Your compa
 </p>
 					</div><!-- end emailsDescription -->
                   </div><!-- end awesome -->
-                    
-                    
+
+
                     <div class="text hideTab" id="shizam" name="shizam">
                     	<div id="emails">
                         	<h3>Events Candle Value</h3>
@@ -359,7 +359,7 @@ Ex.  You have 40% of your chapter signed up for Relay by March 20th.  Your compa
 
                         </div><!-- emailsDescription -->
                     </div><!-- end shizam -->
-                    
+
                     <div class="text hideTab" id="yes" name="yes">
                     	<div id="emails">
                         	<h3>T-shirt Candle Value</h3>
@@ -378,16 +378,16 @@ Ex.  20% of your company buys the bar crawl t-shirt.  Your company receives 300 
 
                         </div><!-- emailsDescription -->
                     </div><!-- end shizam -->
-                    
-                    
-                    
-                    
-                    
-                    
+
+
+
+
+
+
                 </div><!-- end explanation -->
-				
-                
-                
+
+
+
 			</div><!-- end howItWorksBkg -->
             <div id="feedback">
             <div id="feedbackTab"></div>
@@ -407,8 +407,8 @@ Ex.  20% of your company buys the bar crawl t-shirt.  Your company receives 300 
         </div><!-- end feedback -->
 		</div><!-- end main -->
 	<!--</div>-->
-	
-	
+
+
 
 </body>
 
@@ -422,7 +422,7 @@ Ex.  20% of your company buys the bar crawl t-shirt.  Your company receives 300 
 			resetFeedback();
 		});
 	}
-	
+
 	function sendComment(){
 	c = document.getElementById("commentIn").value;
 	$.post("comment.php", { comment: c},
@@ -431,7 +431,7 @@ Ex.  20% of your company buys the bar crawl t-shirt.  Your company receives 300 
 			resetFeedback();
 		});
 	}
-	
+
 	function resetFeedback(){
 		document.getElementById("commentIn").value = "";
 		document.getElementById("problemIn").value = "";
@@ -452,4 +452,4 @@ Ex.  20% of your company buys the bar crawl t-shirt.  Your company receives 300 
   })();
 
 </script>
-</html> 
+</html>

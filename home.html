@@ -10,9 +10,9 @@
     <link href="css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
 
 
-	
+
 	<!-- Scrollbar -->
-	
+
 	<!-- Get Google CDN's jQuery and jQuery UI with fallback to local -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
@@ -20,22 +20,22 @@
     <script src="js/jquery.mousewheel.min.js"></script>
     <!-- custom scrollbars plugin -->
     <script src="js/jquery.mCustomScrollbar.js"></script>
-  
-</head>	
+
+</head>
 	<script>
-	
+
 	//Scrollbar
 	    (function ($) {
 	        $(window).load(function () {
 	                $(".forScroll").mCustomScrollbar();
 	        });
 	    })(jQuery);
-        
-	  
+
+
 	</script>
 
 
-    
+
 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"> </script>
 	<script>
@@ -60,9 +60,9 @@
 			var sponsor_image = '#sponsor_image';
 			var sponsor_candles = '#sponsor_candles';
 			var sponsor_date = '#sponsor_date';
-			
+
 			var sponsor_number = 1;
-			for(item in data) 
+			for(item in data)
 			{
 				var current_title = sponsor_title + sponsor_number;
 				var current_paragraph = sponsor_paragraph + sponsor_number;
@@ -75,16 +75,16 @@
 				$(current_paragraph).append(record.fields.description);
 				$(current_image).attr("src", record.fields.image);
 				$(current_candles).append(record.fields.candles_rewarded+' candles');
-				
+
 				//var d1=new Date(record.fields.date);
 				//d1.toString('dddd, MMMM ,yyyy')  //returns "Monday, June 29,2009"
-				
+
 				//$(date).append(d1);
-				
-				
-				
-				var m_names = new Array("January", "February", "March", 
-"April", "May", "June", "July", "August", "September", 
+
+
+
+				var m_names = new Array("January", "February", "March",
+"April", "May", "June", "July", "August", "September",
 "October", "November", "December");
 
 var d = new Date(record.fields.date);
@@ -112,32 +112,32 @@ var curr_month = d.getMonth();
 var curr_year = d.getFullYear();
 
 $(date).append(m_names[curr_month] + " " + curr_date + "<SUP>" + sup + "</SUP>");
-				
-				
-				
-				
-				
-				
-				/*var m_names = new Array("January", "February", "March", 
-"April", "May", "June", "July", "August", "September", 
+
+
+
+
+
+
+				/*var m_names = new Array("January", "February", "March",
+"April", "May", "June", "July", "August", "September",
 "October", "November", "December");
-				
-				
+
+
 				var d = new Date(record.fields.date);
     			var curr_date = d.getDate();
     			var curr_month = d.getMonth() + 1; //Months are zero based
     			var curr_year = d.getFullYear();
     			$(date).append(curr_date + "-" + m_names[curr_month]);*/
-				
+
 				//$(date).append(record.fields.date);
-				
-				
+
+
 				// $("#participant_table_body").append("<tr><td style='text-align:left;padding:10px 0 0 20px;'>"+record.fields.fname+" "+record.fields.lname+"</td><td> </td><td> "+record.fields.email+"</td><td></td><td> </td></tr>");
 			}
 		}
-		
-		
-		
+
+
+
 		// Feedback
 		$(document).ready(function () {
 		    //$(":not('#feedbackTab')").click(function () {
@@ -166,7 +166,7 @@ $(date).append(m_names[curr_month] + " " + curr_date + "<SUP>" + sup + "</SUP>")
 
 		    });
 		});
-		
+
 	function addCommas(num)
 	{
     var array = num.toString().split('');
@@ -178,9 +178,9 @@ $(date).append(m_names[curr_month] + " " + curr_date + "<SUP>" + sup + "</SUP>")
     }
     return array.join('');
 	}
-		
+
 	</script>
-    
+
 <link href="css/Css.css" type="text/css" rel="stylesheet" />
 <body id="container" onLoad="setupPage()">
 	<div id="background">
@@ -266,7 +266,7 @@ $(date).append(m_names[curr_month] + " " + curr_date + "<SUP>" + sup + "</SUP>")
 				<p></p>
                 <div class="forScroll">
                 	<p id="sponsor_paragraph3" class="sponsor_paragraph"></p>
-                </div>	
+                </div>
 			</div>
 			<div class="sponsor" id="sponsor4">
 				<div class="sponsorHeader">
@@ -316,7 +316,7 @@ $(date).append(m_names[curr_month] + " " + curr_date + "<SUP>" + sup + "</SUP>")
 			resetFeedback();
 		});
 	}
-	
+
 	function sendComment(){
 	c = document.getElementById("commentIn").value;
 	$.post("comment.php", { comment: c},
@@ -325,7 +325,7 @@ $(date).append(m_names[curr_month] + " " + curr_date + "<SUP>" + sup + "</SUP>")
 			resetFeedback();
 		});
 	}
-	
+
 	function resetFeedback(){
 		document.getElementById("commentIn").value = "";
 		document.getElementById("problemIn").value = "";
@@ -345,4 +345,4 @@ $(date).append(m_names[curr_month] + " " + curr_date + "<SUP>" + sup + "</SUP>")
   })();
 
 </script>
-</html> 
+</html>

@@ -85,7 +85,7 @@
 						<ul id="pagesBack">
 							<!-- <li class="pagesBackLink"><a href="#">Individual</a>&nbsp;-</li> -->
 							<li class="pagesBackLink">
-								<a href="teams.html#">General Teams</a>&nbsp;-
+								<a href="teamList.html#">General Teams</a>&nbsp;-
 							</li>
 							<li class="pagesBackLink">
 								<a href="home.html">Home</a>
@@ -184,14 +184,14 @@
 			<% }); %>
 		</script>
 		<script type="text/template" id="participants-title-template">
-			<a href="teams.html#">Teams</a> &raquo; <%= team.get('team_name') %>
+			<a href="teamList.html#">Teams</a> &raquo; <%= team.get('team_name') %>
 		</script>
 		<script type="text/template" id="participants-list-row-template">
 			<% _.each(participants, function(p){ %>
 			<tr class="teamRow" id="participant-<%= p.get('participant_id') %>">
 				<td class="teamRowPosition"><%= p.get('position') %></td>
 				<td class="teamRowFirstName">
-					<a href="teams.html#/participant/<%= p.get('participant_id') %>">
+					<a href="teamList.html#/participant/<%= p.get('participant_id') %>">
 						<%= p.get('participant_first_name') %>
 						<%= p.get('participant_last_name') %>
 					</a>
@@ -206,7 +206,7 @@
 
 
 		<script type="text/template" id="participant-title-template">
-			<a href="teams.html#/team/<%= participant.get('info').team_id %>"><%= participant.get('info').team_name %></a> &raquo; <span><%= participant.get('info').fname %>
+			<a href="teamList.html#/team/<%= participant.get('info').team_id %>"><%= participant.get('info').team_name %></a> &raquo; <span><%= participant.get('info').fname %>
 			<%= participant.get('info').lname %></span>
 		</script>
 		<script type="text/template" id="participant-single-template">
