@@ -14,23 +14,7 @@ $contents = json_encode(array());
 $url = $_GET['__url'];
 if ( $parsed = parse_url($url) )
 {
-	if ( $parsed['host'] == 'www.vtrelaycandles.org' )
-	{
-		$cached_url = 'cached/'.md5($url);
-
-		if ( file_exists($cached_url) && $cached )
-		{
-			$contents = file_get_contents($cached_url);
-		}
-		else
-		{
-			$contents = file_get_contents($url);
-
-			$fh = fopen($cached_url, 'w+');
-			fwrite($fh, $contents);
-			fclose($fh);
-		}
-	}
+	@$contents = file_get_contents($url);
 }
 
 echo $contents;

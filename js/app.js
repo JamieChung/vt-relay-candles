@@ -1,5 +1,5 @@
 // var __proxy = 'requests/proxy.php?__url=http://www.vtrelaycandles.org';
-var __proxy = 'requests/proxy.php?__url=http://localhost:8000';
+var __proxy = window.location.host == 'localhost'  ? 'requests/proxy.php?__url=http://localhost:8000' : '';
 
 // #
 // Default route
@@ -9,10 +9,11 @@ TeamsListView = Backbone.View.extend({
 		var that = this;
 
 		$(this.el).empty();
+		$('#content').empty();
 		$('#loadingImg').show();
-		$('#search-area, #sorterHeader, #forScroll').show();
 		$('#team_name').text('Team Name');
 		$('#pagesHeaderTxt').text('General Teams');
+		$('#search-area, #sorterHeader, #forScroll, #pagesCheck').show();
 
 		TeamsCollection.fetch({
 			success: function(teams){
@@ -38,9 +39,10 @@ ParticipantsListView = Backbone.View.extend({
 		var that = this;
 
 		$(this.el).empty();
+		$('#content').empty();
 		$('#loadingImg').show();
-		$('#search-area, #sorterHeader, #forScroll').show();
 		$('#team_name').text('Participant Name');
+		$('#search-area, #sorterHeader, #forScroll, #pagesCheck').show();
 
 		var t = new Team({id: id}).fetch({
 			success: function(team){
@@ -54,8 +56,6 @@ ParticipantsListView = Backbone.View.extend({
 				TeamParticipantsCollection.fetch({
 					success: function(participants){
 						$('#loadingImg').hide();
-
-						// console.log(participants.models);
 
 						$(that.el).html(
 							_.template($('#participants-list-row-template').html(), {
@@ -77,17 +77,22 @@ ParticipantSingleView = Backbone.View.extend({
 	render: function(id){
 		var that = this;
 		var P = new Participant({id: id});
-		$('#search-area, #sorterHeader, #forScroll').hide();
+		$('#search-area, #sorterHeader, #forScroll, #pagesCheck').hide();
 		P.fetch({
 			success: function(participant){
+
+				$('#loadingImg').hide();
+
 				vars = {
 					id: id,
 					participant: participant
 				};
 
-				// console.log
+				$('#pagesHeaderTxt').html(
+					_.template($('#participant-title-template').html(), vars));
 
-				// $(that.el).html(_.template($('#participant-template').html(), vars));
+				$(that.el).html(
+					_.template($('#participant-single-template').html(), vars));
 			}
 		});
 
@@ -135,7 +140,7 @@ var AppRouter = Backbone.Router.extend({
 	}
 });
 
-var app_router = new AppRouter;
+var app_router = new AppRouter();
 
 app_router.on('route:getParticipant', function(id){
 	var participant_single_view = new ParticipantSingleView();

@@ -93,6 +93,8 @@
 						</ul>
 					</div>
 					<div id="search-area"><label class="search">Search:&nbsp;&nbsp;<input id="searchBox" type="text" name="teamName"></label></div>
+
+					<div id="content"></div>
 					<div id="pagesCheck">
 						<table id="sorterHeader">
 							<tr>
@@ -202,8 +204,215 @@
 			<% }); %>
 		</script>
 
+
+		<script type="text/template" id="participant-title-template">
+			<a href="teams.html#/team/<%= participant.get('info').team_id %>"><%= participant.get('info').team_name %></a> &raquo; <span><%= participant.get('info').fname %>
+			<%= participant.get('info').lname %></span>
+		</script>
 		<script type="text/template" id="participant-single-template">
-			<h3>Name</h3>
+
+			<div class="personalBox">
+				<div class="personalTab">
+					Milestone
+				</div>
+				<div class="personalBody">
+					<div class="personalBodyTop">
+						<table class="personalTable">
+							<tr class="personalBodyHeader">
+								<th class="personalTableLarge">
+									Date
+								</th>
+								<th class="personalTableSmall">
+									Milestone
+								</th>
+								<th class="personalTableEnd">
+									Candles
+								</th>
+							</tr>
+						</table>
+						<div class="forScroll">
+							<% if ( _.size(participant.get('milestones')) > 0 ){ %>
+							<table class="personalTable">
+								<% _.each(participant.get('milestones'), function(milestone){ %>
+								<tr>
+									<td class="personalTableLarge personalTableFirstRow">
+										10-20-12
+									</td>
+									<td class="personalTableSmall personalTableFirstRow">
+										350
+									</td>
+									<td class="personalTableEnd personalTableFirstRow">
+										1435
+									</td>
+								</tr>
+								<% }) %>
+							</table>
+							<% } %>
+						</div>
+						<div class="personalBodySpace"></div>
+					</div>
+					<div class="personalBodyBottom">
+						<div class="personalBodyBottomLarge">
+							Total
+						</div>
+						<div class="personalBodyBottomSmall">
+							<%= participant.get('totals').milestone_total %>
+						</div>
+						<div class="personalBodyBottomEnd">
+							####
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="personalBox">
+				<div class="personalTab">
+					Donations
+				</div>
+				<div class="personalBody">
+					<div class="personalBodyTop">
+						<table class="personalTable">
+							<tr class="personalBodyHeader">
+								<th class="personalTableLargeOne">
+									Date
+								</th>
+								<th class="personalTableEndOne">
+									Donations
+								</th>
+							</tr>
+						</table>
+						<div class="forScroll">
+							<% if ( _.size(participant.get('donations')) > 0 ){ %>
+							<table class="personalTable">
+								<% _.each(participant.get('donations'), function(donation){ %>
+								<tr>
+									<td class="personalTableLargeOne personalTableFirstRow">
+										<%= donation.date %>
+									</td>
+									<td class="personalTableEndOne personalTableFirstRow">
+										<%= donation.amount %>
+									</td>
+								</tr>
+								<% }) %>
+							</table>
+							<% } %>
+						</div>
+					</div>
+					<div class="personalBodyBottom">
+						<div class="personalBodyBottomLarge">
+							Total
+						</div>
+						<div class="personalBodyBottomEndOne">
+							<%= participant.get('totals').donations_total %>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="personalBox">
+				<div class="personalTab">
+					Emails Sent
+				</div>
+				<div class="personalBody">
+					<div class="personalBodyTop">
+						<table class="personalTable">
+							<tr class="personalBodyHeader">
+								<th class="personalTableLarge">
+									Date
+								</th>
+								<th class="personalTableSmall">
+									Emails
+								</th>
+								<th class="personalTableEnd">
+									Candles
+								</th>
+							</tr>
+						</table>
+						<div class="forScroll">
+							<% if ( _.size(participant.get('emails')) > 0 ){ %>
+							<table class="personalTable">
+								<% _.each(participant.get('emails'), function(email){ %>
+								<tr>
+									<td class="personalTableLarge personalTableFirstRow">
+										10-20-12
+									</td>
+									<td class="personalTableSmall personalTableFirstRow">
+										350
+									</td>
+									<td class="personalTableEnd personalTableFirstRow">
+										1435
+									</td>
+								</tr>
+								<% }) %>
+							</table>
+							<% } %>
+						</div>
+						<div class="personalBodySpace"></div>
+					</div>
+					<div class="personalBodyBottom">
+						<div class="personalBodyBottomLarge">
+							Total
+						</div>
+						<div class="personalBodyBottomSmall">
+							<%= participant.get('totals').emails_sent %>
+						</div>
+						<div class="personalBodyBottomEnd">
+							<%= participant.get('totals').emails_candles %>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="personalBox">
+				<div class="personalTab">
+					Events
+				</div>
+				<div class="personalBody">
+					<div class="personalBodyTop">
+						<table class="personalTable">
+							<tr class="personalBodyHeader">
+								<th class="personalTableLarge">
+									Event
+								</th>
+								<th class="personalTableSmall">
+									Attend
+								</th>
+								<th class="personalTableEnd">
+									Candles
+								</th>
+							</tr>
+						</table>
+						<div class="forScroll">
+							<% if ( _.size(participant.get('events')) > 0 ){ %>
+							<table class="personalTable">
+								<% _.each(participant.get('events'), function(event){ %>
+								<tr>
+									<td class="personalTableLarge personalTableFirstRow">
+										10-20-12
+									</td>
+									<td class="personalTableSmall personalTableFirstRow">
+										350
+									</td>
+									<td class="personalTableEnd personalTableFirstRow">
+										1435
+									</td>
+								</tr>
+								<% }) %>
+							</table>
+							<% } %>
+						</div>
+						<div class="personalBodySpace"></div>
+					</div>
+					<div class="personalBodyBottom">
+						<div class="personalBodyBottomLarge">
+							Total
+						</div>
+						<div class="personalBodyBottomSmall">
+							<%= participant.get('totals').event_total %>
+						</div>
+						<div class="personalBodyBottomEnd">
+							<%= participant.get('totals').event_candles %>
+						</div>
+					</div>
+				</div>
+			</div>
 		</script>
 	</body>
 </html>
