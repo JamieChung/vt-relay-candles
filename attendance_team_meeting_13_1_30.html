@@ -1,0 +1,372 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>VT Relay Candles - Signup</title>
+<link rel="shortcut icon" href="img/VT_Relay_Logo_bday_curved_favicon.png" />
+
+
+<!-- Custom scrollbars CSS -->
+    <link href="css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
+
+
+	
+		<!-- Scrollbar -->
+	
+	<!-- Get Google CDN's jQuery and jQuery UI with fallback to local -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+    <!-- mousewheel plugin -->
+    <script src="js/jquery.mousewheel.min.js"></script>
+    <!-- custom scrollbars plugin -->
+    <script src="js/jquery.mCustomScrollbar.js"></script>
+	
+	
+	<script>
+	
+	//Scrollbar
+	    (function ($) {
+	        $(window).load(function () {
+	                $("#forScroll").mCustomScrollbar();
+	        });
+	    })(jQuery);
+	  
+	</script>
+	
+	
+	<link href="css/Css.css" rel="stylesheet" type="text/css" />
+</head>
+<body id="container" onLoad="setupPage()">
+	<div id="main"> 
+		<div id="top">
+			<div id="header">
+				<div id="links">
+					<ul class="leftNav">
+						<li class="leftLink"><a href="home.html" >Home</a></li>
+						<li class="leftLink"><a href="howitworks.html" >How It Works</a></li>
+					</ul>
+					<ul class="rightNav">
+						<li class="rightLink"><a href="signup.html">Sign Up</a></li>
+						<li class="rightLink"><a href="http://bit.ly/SJNLot">Donate</a></li>
+					</ul>
+				</div><!-- end links -->
+				<div id="social">
+					<ul id="socialList">
+						<li><a id="twitter" href="http://bit.ly/SBBKAi" target="_blank">Twitter</a></li>
+						<li><a id="facebook" href="http://on.fb.me/SBBEZj" target="_blank">facebook</a></li>
+					</ul>
+				</div><!-- end social -->
+                <div id="pagesLinks">
+                	<a href="teamList.html" id="generalDown" class="pagesLink"></a>
+                    <a href="greekList.html" id="greeksDown" class="pagesLink"></a>
+                    <a href="#" id="corpsDown" class="pagesLink"></a>
+                </div><!-- end pagesLinks -->
+			</div>
+			
+			<!-- <div class="loggedIn">
+				<p class="loggedIn">Scott Welch | <a class ="signOut" href="#">Sign Out</a></p>
+			</div> -->
+			<div id="signUpBkg">
+            	<div id="signUpCandles">
+					<div id="signUpHeaderBkg">
+						<h2 id="signUpCandlesTxt">Team Meeting Attendance</h2>
+					</div><!-- end signUpHeaderBkg -->
+					<label class="signUpTxt">Search your name:&nbsp;<input class="signUpEntry" type="text" name="email"></label><br>
+                	<input id="signInSubmit" type="submit" value="Submit">
+					<div id="signUpCheck">
+						<table id="sorterHeader">
+							<tr>
+							    <th id="name" class="sorterTeamName">Name</th>
+							</tr>
+						</table>
+						<div id="forScroll">
+							<table id="table">
+								<tbody id="team_table_body">		
+								</tbody>
+							</table><!-- end table -->
+						</div><!-- end forScroll -->
+					</div><!-- end signUpCheck -->
+                </div><!-- end signUpCandles -->
+                <div id="divider"></div>
+			</div><!-- end signUpBkg -->
+		</div><!-- end top -->
+		<!-- <div style="background-image:url('img/sponsor_divider.jpg');float:left;width:100%;height:50px;">			
+		</div> -->
+		<!--<div id="thanksSign">
+			
+		</div>-->
+        <div id="feedback">
+            <div id="feedbackTab"></div>
+            <div id="feedbackBody">
+            	<div id="comments">
+                	<h2>Comments/Suggestions</h2>
+                    <textarea class="commentsTxt" id="commentIn" type="text" name="Comments"></textarea><br />
+                	<input id="commentsSubmit"  onclick="sendComment()" type="submit" value="Submit"/>
+              </div><!-- end comments -->
+                <div id="problems">
+						<h2>Problems?</h2><br \>
+						<label id="email">Email:</label><input id ="emailIn" class="emailBox" type="text" name="Email"/><br />
+						<label id="problem">Problem:&nbsp;</label><textarea id ="problemIn" class="problemBox" type="text" name="Comments"></textarea><br />
+						<input id="problemsSubmit" onClick="sendemail()" type="submit" value="Submit"/>
+                </div><!-- end problems -->
+          </div><!-- end feedbackBody -->
+        </div><!-- end feedback -->
+	</div><!-- end main -->
+</body>	
+	
+
+	
+	<script>
+	//Get data
+	    var info = "";
+		function setupPage()
+		{
+			$.get("http://vtrelay.alwaysdata.net/participants1/", function (data,status) {
+				for (var item in data) {
+	                record = data[item];
+	                //if (record.team_type != "RT") {
+	                    //delete data[item];
+	                //}
+				}
+			    setupTable(data);
+			    info = data;
+			});
+		}
+		
+		var string = "";
+		function setupTable(data) 
+		{
+			for(x in data){
+			    string = string + "<tr id='" + data[x].participant_id + "' class='signUpTeamRow'><td onClick='highlightClick(event)'  class='signUpTeamRowFirstName'>" + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + data[x].participant_first_name + " "+data[x].participant_last_name+"</td></tr>";
+			}//end for loop
+		document.getElementById("team_table_body").innerHTML = string;
+		jQuery("#forScroll").mCustomScrollbar("update");
+		}//end setupTable
+		
+		
+		/*function setupPage()
+		{
+			$.get("http://vtrelay.alwaysdata.net/teams/all/", function (data,status) {
+				setupTable(data);
+			});
+		}
+		function setupTable(data)
+		{
+			for(item in data) 
+			{
+				record = data[item]
+				$("#team_table_body").append("<tr><td style='text-align:left;padding:10px 0 0 20px;'>"+record.fields.name+"</td><td> </td><td> "+record.fields.team_type+"</td><td></td><td> </td></tr>");
+			}
+		}*/
+		
+		
+		
+		
+		//Feedback slide up
+		
+		
+		$(document).ready(function () {
+		    $("#feedbackTab").click(function (event) {
+		        if ($("#feedbackBody").hasClass("up")) {
+		            $("#feedbackBody").slideUp();
+		            $("#feedbackBody").removeClass("up");
+		        }
+		        else {
+		            $("#feedbackBody").slideDown();
+		            $("#feedbackBody").addClass("up");
+		        }
+		        event.stopPropagation();
+		    });
+		    $("#feedbackBody").click(function (event) {
+		        event.stopPropagation();
+		    });
+		    $("body").click(function (event) {
+		        event.stopPropagation();
+		        if ($("#feedbackBody").hasClass("up")) {
+		            $("#feedbackBody").slideUp();
+		            $("#feedbackBody").removeClass("up");
+		        }
+
+		    });
+		});
+		
+
+	
+	
+	
+	//Search filter
+	
+	//Creates a new event handler for uppercase letters entered by the user
+	$(document).ready(function ($) {
+jQuery.expr[":"].Contains = jQuery.expr.createPseudo(function(arg) {
+    return function( elem ) {
+        return jQuery(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
+    }; //end return function
+  });//end jQuery.expr
+	
+	//Takes an input
+	function listFilter(list) {
+    var input = $(".signUpEntry");
+	
+	//filters the input
+    $(input)
+      .change( function () {
+        var filter = $(this).val();
+        if(filter) {
+          $('tr').find("td:not(:Contains(" + filter + "))").parent().hide();
+          $('tr').find("td:Contains(" + filter + ")").parent().show();
+		  $("#forScroll").mCustomScrollbar("update");
+        } else {
+          $('tr').show();
+		  jQuery("#forScroll").mCustomScrollbar("update");
+        }
+        return false;
+      })
+    .keyup( function () {
+        $(this).change();
+    });//end input .change
+  }//end listFilter
+
+	//Specifies what to filter.  In this instance a class that is assigned to a table row
+	$(function () {
+    	listFilter($(".signUpTeamRow"));
+  	});//end function
+}(jQuery));//end document ready
+		
+		
+	function highlightClick(event) {
+	    if (document.getElementById("highlight") != null) {
+	        document.getElementById("highlight").id = "";
+	    }
+	    event.target.id = 'highlight';
+	} 
+		
+		
+		
+		//Highlight team
+		$(document).ready(function(){
+		    $(".signUpTeamRow").on("click", function () {
+		        alert("ASDF");
+				$(".highlight").removeClass("highlight");
+    			$(this).addClass("highlight");
+		}); //end document ready
+
+		//Amends the "signup" boolean for teams in the call
+		$("#signInSubmit").click(function(){
+		  	var arr = document.getElementById("highlight");
+			if($(arr).is(':visible')){
+				$.post("http://vtrelay.alwaysdata.net/events/registration/",
+					{
+						'id':arr.parentNode.id,
+				  		'guests':"0",
+				  		'event':"1"
+					},
+					function(data,status) {
+				  		//alert("Data: " + data + "\nStatus: " + status);
+				  		if(status == "success") {
+				  			alert("Thank you for registering for this event!")
+							window.location = 'http://vtrelay.alwaysdata.net/attendance_team_meeting_13_1_30.html'
+				  		} else {
+				  			alert("We could not find that email in our system :(")
+				  		}
+				}); //end post
+			} //end if
+			else {
+				alert('Please select a team.  :)');
+			}// end else
+		});//end #signUpSubmit
+	});//end document ready
+	
+	
+		$(function () {
+		    $('#sorterHeader tr th').click(function () {
+		        var id = $(this).attr('id');
+		        var asc = (!$(this).attr('asc')); // switch the order, true if not set
+		        // set asc="asc" when sorted in ascending order
+		        $('#sorterHeader tr th').each(function () {
+		            $(this).removeAttr('asc');
+		        });
+		        if (asc) $(this).attr('asc', 'asc');
+
+		        sortResults(id, asc);
+		    });
+		});
+
+		function sortResults(prop, asc) {
+		    arr = info;
+		    alert(arr);
+		    arr = arr.sort(function (a, b) {
+		        if (asc) return (compareThings(a[prop], b[prop]));
+		        else return (compareThings(b[prop], a[prop]));
+		    });
+		    showResults(arr);
+		}
+
+		function compareThings(thing1, thing2) {
+		    if (thing1 > thing2) {
+		        return 1;
+		    }
+		    if (thing1 < thing2) {
+		        return -1;
+		    }
+		    if (thing1 == thing2) {
+		        return 0;
+		    }
+		}
+
+		function showResults(arr) {
+		    var html = '';
+		    for (var e in arr) {
+		        stuff = info[e];
+		        html += "<tr id='" + e + "' class='signUpTeamRow'><td onClick='highlightClick(event)'  class='signUpTeamRowFirstName'>" + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + stuff.fields.name + "</td></tr>";
+		    }
+		    $('#team_table_body').html(html);
+		    alert(html);
+		}
+	
+	
+	
+	</script>
+
+	
+<script type="text/javascript">
+	function sendemail(){
+	p = document.getElementById("problemIn").value;
+	e = document.getElementById("emailIn").value;
+	$.post("mail.php", { problem: p, email: e },
+		function(){
+			alert("Thank You for your Feedback!");
+			resetFeedback();
+		});
+	}
+	
+	function sendComment(){
+	c = document.getElementById("commentIn").value;
+	$.post("comment.php", { comment: c},
+		function(){
+			alert("Thank You for your Feedback!");
+			resetFeedback();
+		});
+	}
+	
+	function resetFeedback(){
+		document.getElementById("commentIn").value = "";
+		document.getElementById("problemIn").value = "";
+		document.getElementById("emailIn").value = "";
+		$("#feedbackBody").slideUp();
+		$("#feedbackBody").removeClass("up");
+	}
+
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36920407-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</html> 

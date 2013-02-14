@@ -1,0 +1,344 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>VT Relay Candles - Participants</title>
+<link rel="shortcut icon" href="img/VT_Relay_Logo_bday_curved_favicon.png" />
+<link href="css/Css.css" rel="stylesheet" type="text/css" />
+
+
+<!-- Custom scrollbars CSS -->
+    <link href="css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
+
+
+	
+	<!-- Scrollbar -->
+	
+	<!-- Get Google CDN's jQuery and jQuery UI with fallback to local -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+    <!-- mousewheel plugin -->
+    <script src="js/jquery.mousewheel.min.js"></script>
+    <!-- custom scrollbars plugin -->
+    <script src="js/jquery.mCustomScrollbar.js"></script>
+    
+    
+    
+    
+    
+</head>	
+	<script>
+	
+	//Scrollbar
+	    (function ($) {
+	        $(window).load(function () {
+	                $("#forScroll").mCustomScrollbar();
+	        });
+	    })(jQuery);
+        
+	  
+	</script>
+
+	<script>
+	    var info = "";
+	    function setupPage() {
+	        $.get("http://vtrelay.alwaysdata.net/companies/corps/candles/all/", function (data, status) {
+	            for (var item in data) {
+	                record = data[item];
+	                if (record.company_type == "CT") {
+	                    record.company_name = new String(record.company_name);
+	                    record.company_event_milestone_candles = parseInt(record.company_event_milestone_candles);
+	                    record.company_email_milestone_candles = parseInt(record.company_email_milestone_candles);
+	                    record.company_donation_milestone_candles = parseInt(record.company_donation_milestone_candles);
+	                    record.company_candles_total = parseInt(record.company_candles_total);
+	                }
+	                else {
+	                    delete data[item];
+	                }
+	            }
+	            sortResult(data);
+	        });
+	    }
+	    function setupTable(data) {
+			document.getElementById("loadingImg").style.display = "none";
+	        for (var item in data) {
+	            record = data[item];
+	            record['position'] = parseInt(item)+1;
+	            $("#team_table_body").append("<tr class='teamRow' id="+record.company_id+"><td id='teamRowPosition'>"+record.position+"</td><td class='teamRowFirstName'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+record.company_name+"</td><td id='teamRowMilestone'>"+record.company_donation_milestone_candles+"</td><td id='teamRowEmails'>"+record.company_email_milestone_candles+"</td><td id='teamRowEvents'>"+record.company_event_milestone_candles+"</td><td id='teamRowTotal'>"+record.company_candles_total+"</td></tr>");
+	        }
+			jQuery("#forScroll").mCustomScrollbar("update");
+	    }
+
+	    function sortResult(data) {
+	        data = data.sort(function (a, b) {
+	            var prop = "team_candles_total";
+                if(b[prop] instanceof String){
+                    a[prop] = a[prop].toLowerCase();
+                    b[prop] = b[prop].toLowerCase();
+                }
+	            if(b[prop] > a[prop]){
+	                return 1;}
+	            if(b[prop] < a[prop]){
+	                return -1;}
+	            else{
+	                return (compareThings(a["team_name"], b["team_name"]));
+	            }
+
+	           // return (compareThings(b["team_candles_total"], a["team_candles_total"]));
+	        });
+	        setupTable(data);
+	        info = data;
+	    }
+		
+		
+// Search bar
+
+		$(document).ready(function ($) {
+jQuery.expr[":"].contains = jQuery.expr.createPseudo(function(arg) {
+    return function( elem ) {
+        return jQuery(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
+    };
+  });
+  function listFilter(list) {
+    var input = $("#searchBox");
+ 
+    $(input)
+      .change( function () {
+        var filter = $(this).val();
+        if(filter) {
+          $('tr').find("td:not(:Contains(" + filter + "))").parent().hide();
+          $('tr').find("td:Contains(" + filter + ")").parent().show();
+        } else {
+          $('tr').show();
+        }
+		  $("#forScroll").mCustomScrollbar("update");
+        return false;
+      })
+    .keyup( function () {
+        $(this).change();
+    });
+  }
+ 
+  $(function () {
+    listFilter($(".teamRow"));
+  });
+}(jQuery));
+		
+		
+		//Feedback slide up
+		
+		$(document).ready(function () {
+		    //$(":not('#feedbackTab')").click(function () {
+		    //    $("#feedbackBody").slideDown();
+		    //});
+		    $("#feedbackTab").click(function (event) {
+		        if ($("#feedbackBody").hasClass("up")) {
+		            $("#feedbackBody").slideUp();
+		            $("#feedbackBody").removeClass("up");
+		        }
+		        else {
+		            $("#feedbackBody").slideDown();
+		            $("#feedbackBody").addClass("up");
+		        }
+		        event.stopPropagation();
+		    });
+		    $("#feedbackBody").click(function (event) {
+		        event.stopPropagation();
+		    });
+		    $("body").click(function (event) {
+		        event.stopPropagation();
+		        if ($("#feedbackBody").hasClass("up")) {
+		            $("#feedbackBody").slideUp();
+		            $("#feedbackBody").removeClass("up");
+		        }
+
+		    });
+		});
+		
+		
+		//Column sorting
+	
+		//$('#sorterHeader tr th').hover(function() {
+		//$(this).addClass
+			
+			
+			
+
+$(function() {
+    $('#sorterHeader tr th').click(function () {
+        var id = $(this).attr('id');
+        var asc = (!$(this).attr('asc')); // switch the order, true if not set
+        
+        // set asc="asc" when sorted in ascending order
+        $('#sorterHeader tr th').each(function() {
+            $(this).removeAttr('asc');
+        });
+        if (asc) $(this).attr('asc', 'asc');
+        
+        sortResults(id, asc);
+    });
+        
+});
+
+function sortResults(prop, asc) {
+    arr = info;
+    arr = arr.sort(function (a, b) {
+        var thing1 = a[prop];
+        var thing2 = b[prop];
+        if (thing1 instanceof String) {
+            thing1 = thing1.toLowerCase();
+            thing2 = thing2.toLowerCase();
+        }
+        if (asc){     
+            if (thing1 > thing2) {
+                return 1;}
+            if (thing1 < thing2) {
+                return -1;}
+            else{
+                return (compareThings(a["team_name"], b["team_name"]));
+            }
+        }
+        else{     
+            if (thing2 > thing1) {
+                return 1;}
+            if (thing2 < thing1) {
+                return -1;}
+            else{
+               return (compareThings(a["team_name"], b["team_name"]));
+            }
+        }
+        
+        
+       // return (compareThings(a[prop] , b[prop]));
+       // else return (compareThings(b[prop] , a[prop], a, b));
+    });
+
+    showResults(arr);
+}
+
+function compareThings(thing1, thing2) {
+    if(thing1 instanceof String){
+        thing1 = thing1.toLowerCase();
+        thing2 = thing2.toLowerCase();
+    }
+	if(thing1 < thing2){
+		return -1;}
+	else{
+		return 1;}
+}
+
+function showResults (arr) {
+    var html = '';
+    for (var e in arr) {
+        items = arr[e];
+        html += "<tr class='teamRow' id="+e+"><td id='teamRowPosition'>"+item.position+"</td><td class='teamRowFirstName'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+item.company_name+"</td><td id='teamRowMilestone'>"+item.company_donation_milestone_candles+"</td><td id='teamRowEmails'>"+item.company_email_milestone_candles+"</td><td id='teamRowEvents'>"+item.company_event_milestone_candles+"</td><td id='teamRowTotal'>"+item.company_candles_total+"</td></tr>";
+    }
+    $('#team_table_body').html(html);
+}
+
+	</script>
+    
+<body id="container" onload="setupPage()">
+	<div id="main"> 
+		<div id="top">
+			<div id="header">
+				<div id="links">
+					<ul class="leftNav">
+						<li class="leftLink"><a href="home.html" >Home</a></li>
+						<li class="leftLink"><a href="howitworks.html" >How It Works</a></li>
+					</ul>
+					<ul class="rightNav">
+						<li class="rightLink"><a href="signup.html">Sign Up</a></li>
+						<li class="rightLink"><a href="http://bit.ly/SJNLot">Donate</a></li>
+					</ul>
+				</div><!-- end links -->
+				<div id="social">
+					<ul id="socialList">
+						<li><a id="twitter" href="http://bit.ly/SBBKAi" target="_blank">Twitter</a></li>
+						<li><a id="facebook" href="http://on.fb.me/SBBEZj" target="_blank">facebook</a></li>
+					</ul>
+				</div><!-- end social -->
+                <div id="pagesLinks">
+                	<a href="teamList.html" id="generalDown" class="pagesLink"></a>
+                    <a href="greekList.html" id="greeksDown" class="pagesLink"></a>
+                    <a href="corpsList.html" id="corpsUp" class="pagesLink"></a>
+                </div><!-- end pagesLinks -->
+			</div>
+			
+			<!-- <div class="loggedIn">
+				<p class="loggedIn">Scott Welch | <a class ="signOut" href="#">Sign Out</a></p>
+			</div> -->
+            <!--<div id="notSigned"></div> -->
+			<div id="pagesBkg">
+				<div id="pagesHeaderBkg">
+					<h2 id="pagesHeaderTxt">Corps Companies</h2>
+                    <ul id="pagesBack">
+                    	<!-- <li class="pagesBackLink"><a href="#">Individual</a>&nbsp;-</li> -->
+                   		<li class="pagesBackLink"><a href="teamList.html">Corps Companies</a>&nbsp;-</li> 
+                    	<li class="pagesBackLink"><a href="home.html">Home</a></li>
+                    </ul>
+				</div>
+                <label class="search">Search:&nbsp;&nbsp;<input id="searchBox" type="text" name="teamName"/></label>
+                        		
+				<div id="pagesCheck">
+					<table id="sorterHeader">
+						<tr>
+							<th id="position" class="sorterPosition">Pos.</th>
+							<th id="company_name" class="sorterTeamName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Company Name</th>
+							<th id="company_donation_milestone_candles" class="sorterOther">Milestone</th>
+							<th id="company_email_milestone_candles" class="sorterOther">Emails</th>
+							<th id="company_event_milestone_candles" class="sorterOther">Events</th>
+							<th id="company_candles_total" class="sorterOther">Total</th>
+						</tr>
+					</table>
+					<img id="loadingImg" src="img/loading_bar.gif"/>
+					<div id="forScroll">
+						<table id="table">
+							<tbody id="team_table_body">		
+							</tbody>
+						</table><!-- end table -->
+					</div><!-- end forScroll -->
+				</div><!-- end pagesCheck -->
+			</div><!-- end pagesBkg -->
+            <div id="feedback">
+            <div id="feedbackTab"></div>
+            <div id="feedbackBody">
+            	<div id="comments">
+                	<h2>Comments/Suggestions</h2>
+                    <textarea class="commentsTxt" id="commentIn" type="text" name="Comments"></textarea><br />
+                	<input id="commentsSubmit"  onclick="sendComment()" type="submit" value="Submit"/>
+              </div><!-- end comments -->
+                <div id="problems">
+						<h2>Problems?</h2><br \>
+						<label id="email">Email:</label><input id ="emailIn" class="emailBox" type="text" name="Email"/><br />
+						<label id="problem">Problem:&nbsp;</label><textarea id ="problemIn" class="problemBox" type="text" name="Comments"></textarea><br />
+						<input id="problemsSubmit" onclick="sendemail()" type="submit" value="Submit"/>
+                </div><!-- end problems -->
+          </div><!-- end feedbackBody -->
+        </div><!-- end feedback -->
+		</div><!-- end main -->
+	</div>
+	
+	
+
+</body>
+
+
+
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36920407-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</html> 

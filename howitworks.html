@@ -1,0 +1,288 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>VT Relay Candles - Participants</title>
+<link rel="shortcut icon" href="img/VT_Relay_Logo_bday_curved_favicon.png" />
+
+
+	<!-- Custom scrollbars CSS -->
+    <link href="css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
+
+
+	
+	<!-- Scrollbar -->
+	
+	<!-- Get Google CDN's jQuery and jQuery UI with fallback to local -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+    <!-- mousewheel plugin -->
+    <script src="js/jquery.mousewheel.min.js"></script>
+    <!-- custom scrollbars plugin -->
+    <script src="js/jquery.mCustomScrollbar.js"></script>
+	
+</head>	
+	<script>
+	
+	//Scrollbar
+	
+	(function($){
+        $(window).load(function(){
+          $("#forScroll").mCustomScrollbar();
+        });
+      })(jQuery);
+	  
+	</script>
+
+
+
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"> </script>
+	<script>
+
+		
+
+
+//Feedback slide up
+		
+		
+		$(document).ready(function () {
+		    $("#feedbackTab").click(function (event) {
+		        if ($("#feedbackBody").hasClass("up")) {
+		            $("#feedbackBody").slideUp();
+		            $("#feedbackBody").removeClass("up");
+		        }
+		        else {
+		            $("#feedbackBody").slideDown();
+		            $("#feedbackBody").addClass("up");
+		        }
+		        event.stopPropagation();
+		    });
+		    $("#feedbackBody").click(function (event) {
+		        event.stopPropagation();
+		    });
+		    $("body").click(function (event) {
+		        event.stopPropagation();
+		        if ($("#feedbackBody").hasClass("up")) {
+		            $("#feedbackBody").slideUp();
+		            $("#feedbackBody").removeClass("up");
+		        }
+
+		    });
+		});
+
+
+
+
+
+
+$(document).ready(function ($) {
+jQuery.expr[":"].contains = jQuery.expr.createPseudo(function(arg) {
+    return function( elem ) {
+        return jQuery(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
+    };
+  });
+  function listFilter(list) {
+    var input = $("#searchBox");
+ 
+    $(input)
+      .change( function () {
+        var filter = $(this).val();
+        if(filter) {
+          $('tr').find("td:not(:Contains(" + filter + "))").parent().hide();
+          $('tr').find("td:Contains(" + filter + ")").parent().show();
+        } else {
+          $('tr').show();
+        }
+		$("#forScroll").mCustomScrollbar("update");
+        return false;
+      })
+    .keyup( function () {
+        $(this).change();
+    });
+  }
+ 
+  $(function () {
+    listFilter($(".teamRow"));
+  });
+}(jQuery));
+			
+
+
+		
+		
+		
+		
+			//Column sorting
+arr = obj.fields;
+$(function() {
+    $('#sorterHeader tr th').click(function() {
+        var id = $(this).attr('id');
+        var asc = (!$(this).attr('asc')); // switch the order, true if not set
+        
+        // set asc="asc" when sorted in ascending order
+        $('#sorterHeader tr th').each(function() {
+            $(this).removeAttr('asc');
+        });
+        if (asc) $(this).attr('asc', 'asc');
+        
+        sortResults(id, asc);
+    });
+        
+    showResults();
+});
+
+function sortResults(prop, asc) {
+    arr = arr.sort(function(a, b) {
+        if (asc) return (a[prop] > b[prop]);
+        else return (b[prop] > a[prop]);
+    });
+    showResults();
+}
+
+function showResults () {
+    var html = '';
+    for (var e in arr) {
+        html += "<tr id='"+x+"' class='teamRow'><td id='teamRowPosition'>"+arr[e].points+"</td><td class='teamRowFirstName'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+arr[e].fname+" "+arr[e].lname+"</td><td id='teamRowMilestone'>"+arr[e].signup+"</td><td id='teamRowEmails'>"+arr[e].donations+"</td><td id='teamRowEvents'>"+arr[e].donations+"</td><td id='teamRowTotal'>"+arr[e].donations+"</td></tr>";
+    }
+    $('#team_table_body').html(html);
+}
+
+	</script>
+    
+<link href="css/Css.css" rel="stylesheet" type="text/css" />
+<body id="container" onload="">
+	<div id="main"> 
+		<div id="top">
+			<div id="header">
+				<div id="links">
+					<ul class="leftNav">
+						<li class="leftLink"><a href="home.html" >Home</a></li>
+						<li class="leftLink"><a href="howitworks.html" >How It Works</a></li>
+					</ul>
+					<ul class="rightNav">
+						<li class="rightLink"><a href="signup.html">Sign Up</a></li>
+						<li class="rightLink"><a href="http://bit.ly/SJNLot">Donate</a></li>
+					</ul>
+				</div><!-- end links -->
+				<div id="social">
+					<ul id="socialList">
+						<li><a id="twitter" href="http://bit.ly/SBBKAi" target="_blank">Twitter</a></li>
+						<li><a id="facebook" href="http://on.fb.me/SBBEZj" target="_blank">facebook</a></li>
+					</ul>
+				</div><!-- end social -->
+                <div id="pagesLinks">
+                	<a href="teamList.html" id="generalDown" class="pagesLink"></a>
+                    <a href="greekList.html" id="greeksDown" class="pagesLink"></a>
+                    <a href="corpsList.html" id="corpsDown" class="pagesLink"></a>
+                </div><!-- end pagesLinks -->
+			</div>
+			
+			<!-- <div class="loggedIn">
+				<p class="loggedIn">Scott Welch | <a class ="signOut" href="#">Sign Out</a></p>
+			</div> -->
+			<div id="pagesBkg">
+				<div id="pagesHeaderBkg">
+					<h2 id="pagesHeaderTxt">How It Works</h2>
+                    <ul id="pagesBack">
+                    	<!-- <li class="pagesBackLink"><a href="#">Individual</a>&nbsp;-</li> -->
+                   		<li class="pagesBackLink"><a href="teamList.html">How It Works</a>&nbsp;-</li> 
+                    	<li class="pagesBackLink"><a href="home.html">Home</a></li>
+                    </ul>
+				</div>
+                <div id="teamBoxes">
+					<div class="teamBox">
+						<a href="howitworks_corps.html" id="cadets">Cadets For Cure</a>
+					</div>
+					<div class="teamBox">
+						<a href="howitworks_greeks.html" id="greeks">Greeks For Life</a>
+					</div>
+					<div class="teamBox">
+						<a href="howitworks_general.html" id="general">General Teams</a>
+					</div><!-- end teamBox -->
+				</div><!-- end teamBoxes -->
+				<div id="art">
+                </div>	
+				<div id="howItWorksCheck">
+					<table id="sorterHeader">
+						<tr>
+							<th id="points" class="sorterPosition">Pos.</th>
+							<th id="fname" class="sorterTeamName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Team Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="searchHow">Search:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="searchBox" type="text" name="teamName"></label></th>
+							<th id="signup" class="sorterOther">Milestone</th>
+							<th id="donations" class="sorterOther">Emails</th>
+							<th class="sorterOther">Events</th>
+							<th class="sorterOther">Total</th>
+						</tr>
+					</table>
+					<div id="forScroll" style="visibility:hidden;">
+						<table id="table">
+							<tbody id="team_table_body">		
+							</tbody>
+						</table><!-- end table -->
+					</div><!-- end forScroll -->
+				</div><!-- end howItWorksCheck -->
+			</div><!-- end pagesBkg -->
+            <div id="feedback">
+            <div id="feedbackTab"></div>
+            <div id="feedbackBody">
+            	<div id="comments">
+                	<h2>Comments/Suggestions</h2>
+                    <textarea class="commentsTxt" id="commentIn" type="text" name="Comments"></textarea><br />
+                	<input id="commentsSubmit"  onclick="sendComment()" type="submit" value="Submit"/>
+              </div><!-- end comments -->
+                <div id="problems">
+						<h2>Problems?</h2><br \>
+						<label id="email">Email:</label><input id ="emailIn" class="emailBox" type="text" name="Email"/><br />
+						<label id="problem">Problem:&nbsp;</label><textarea id ="problemIn" class="problemBox" type="text" name="Comments"></textarea><br />
+						<input id="problemsSubmit" onclick="sendemail()" type="submit" value="Submit"/>
+                </div><!-- end problems -->
+          </div><!-- end feedbackBody -->
+        </div><!-- end feedback -->
+		</div><!-- end main -->
+	<!--</div>-->
+	
+	
+
+</body>
+
+<script type="text/javascript">
+	function sendemail(){
+	p = document.getElementById("problemIn").value;
+	e = document.getElementById("emailIn").value;
+	$.post("mail.php", { problem: p, email: e },
+		function(){
+			alert("Thank You for your Feedback!");
+			resetFeedback();
+		});
+	}
+	
+	function sendComment(){
+	c = document.getElementById("commentIn").value;
+	$.post("comment.php", { comment: c},
+		function(){
+			alert("Thank You for your Feedback!");
+			resetFeedback();
+		});
+	}
+	
+	function resetFeedback(){
+		document.getElementById("commentIn").value = "";
+		document.getElementById("problemIn").value = "";
+		document.getElementById("emailIn").value = "";
+		$("#feedbackBody").slideUp();
+		$("#feedbackBody").removeClass("up");
+	}
+
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36920407-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</html> 

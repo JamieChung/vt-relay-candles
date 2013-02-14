@@ -1,0 +1,503 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>VT Relay Candles - Participants</title>
+<link rel="shortcut icon" href="img/VT_Relay_Logo_bday_curved_favicon.png" />
+
+
+	<!-- Custom scrollbars CSS -->
+    <link href="css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
+
+
+	
+	<!-- Scrollbar -->
+	
+	<!-- Get Google CDN's jQuery and jQuery UI with fallback to local -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+    <!-- mousewheel plugin -->
+    <script src="js/jquery.mousewheel.min.js"></script>
+    <!-- custom scrollbars plugin -->
+    <script src="js/jquery.mCustomScrollbar.js"></script>
+	
+</head>	
+	<script>
+	
+	//Scrollbar
+	
+	(function($){
+	    $(window).load(function () {
+	        window.setTimeout(function () {
+	            $("#forScroll").mCustomScrollbar();
+	            $("#forScroll").css("visibility", "visible");
+	        }, 1000);
+        });
+	})(jQuery);
+
+
+	  
+	</script>
+
+
+
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"> </script>
+	<script>
+		/*function setupPage()
+		{
+			$.get("http://vtrelay.alwaysdata.net/teams/all/", function (data,status) {
+				setupTable(data);
+			});
+		}*/
+		
+		
+		//var txt = '{"fields": [' + '{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},' + '{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},' + '{"signup": false, "lname": "Welch", "points": 0, "donations": "0.00", "fname": "Scott", "team": "", "email": "kar@vt.edu"},'+'{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},' + '{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},'+'{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},' + '{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},'+'{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},' + '{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},'+'{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},' + '{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},'+'{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},' + '{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},'+'{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},' + '{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},'+'{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},' + '{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},'+'{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},' + '{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},'+'{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},' + '{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},'+'{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"},' + '{"signup": false, "lname": "Alnajar", "points": 0, "donations": "0.00", "fname": "K", "team": "", "email": "kar@vt.edu"}]}'
+		
+	    //var obj = eval ("(" + txt + ")");
+	    var obj;
+		
+	    $(document).ready(function ($) {
+	        $.get("http://vtrelay.alwaysdata.net/teams/candles/all/", function (data, status) {
+	            for (var item in data) {
+	                record = data[item];
+	                if (record.team_signup == false || record.team_type != "RT") {
+	                    delete data[item];
+	                }
+	                else {
+	                    record.team_name = new String(record.team_name);
+	                    record.team_event_milestone_candles = parseInt(record.team_event_milestone_candles);
+	                    record.team_email_milestone_candles = parseInt(record.team_email_milestone_candles);
+	                    record.team_donation_milestone_candles = parseInt(record.team_donation_milestone_candles);
+	                    record.team_candles = parseInt(record.team_candles);
+	                }
+	            }
+	            obj = data;
+	            string = "";
+				for (x in obj) {
+				    record = obj[x];
+
+					string = string + "<tr class='teamRow' id=" + x + "><td id='teamRowPosition'>" + record.position + "</td><td class='teamRowFirstName'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + record.team_name + "</td><td id='teamRowMilestone'>" + record.team_donation_milestone_candles + "</td><td id='teamRowEmails'>" + record.team_email_milestone_candles + "</td><td id='teamRowEvents'>" + record.team_event_milestone_candles + "</td><td id='teamRowTotal'>" + record.team_candles + "</td></tr>";
+				}
+				document.getElementById("team_table_body").innerHTML = string;
+	        });
+		});
+				
+	/*$(document).ready(function ($) {			
+		var string = "";
+		for(x in obj.fields){
+			string = string +	"<tr id='"+x+"'><td style='text-align:left;padding:5px 0 0 20px;'>"+obj.fields[x].fname+" "+obj.fields[x].lname+"</td></tr>";
+		}
+					alert(string);
+		document.getElementById("team_table_body").innerHTML = string;
+	});*/
+		
+
+
+//Feedback slide up
+		
+		
+		$(document).ready(function () {
+		    $("#feedbackTab").click(function (event) {
+		        if ($("#feedbackBody").hasClass("up")) {
+		            $("#feedbackBody").slideUp();
+		            $("#feedbackBody").removeClass("up");
+		        }
+		        else {
+		            $("#feedbackBody").slideDown();
+		            $("#feedbackBody").addClass("up");
+		        }
+		        event.stopPropagation();
+		    });
+		    $("#feedbackBody").click(function (event) {
+		        event.stopPropagation();
+		    });
+		    $("body").click(function (event) {
+		        event.stopPropagation();
+		        if ($("#feedbackBody").hasClass("up")) {
+		            $("#feedbackBody").slideUp();
+		            $("#feedbackBody").removeClass("up");
+		        }
+
+		    });
+		});
+
+
+
+
+
+$(document).ready(function ($) {
+jQuery.expr[":"].contains = jQuery.expr.createPseudo(function(arg) {
+    return function( elem ) {
+        return jQuery(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
+    };
+  });
+  function listFilter(list) {
+    var input = $("#searchBox");
+ 
+    $(input)
+      .change( function () {
+        var filter = $(this).val();
+        if(filter) {
+          $('tr').find("td:not(:Contains(" + filter + "))").parent().hide();
+          $('tr').find("td:Contains(" + filter + ")").parent().show();
+        } else {
+          $('tr').show();
+        }
+		  $("#forScroll").mCustomScrollbar("update");
+        return false;
+      })
+    .keyup( function () {
+        $(this).change();
+    });
+  }
+ 
+  $(function () {
+    listFilter($(".teamRow"));
+  });
+}(jQuery));
+			
+			/*function setupTable(data)
+		{
+			for(item in data) 
+			{
+				record = data[item]
+				$("#team_table_body").append("<tr><td style='text-align:left;padding:10px 0 0 20px;'>"+record.fields.name+"</td><td> </td><td> "+record.fields.team_type+"</td><td></td><td> </td></tr>");
+			}
+		}
+		*/
+		
+		
+		
+		
+		
+		
+			//Column sorting
+arr = obj;
+$(function() {
+    $('#sorterHeader tr th').click(function() {
+        var id = $(this).attr('id');
+        var asc = (!$(this).attr('asc')); // switch the order, true if not set
+        
+        // set asc="asc" when sorted in ascending order
+        $('#sorterHeader tr th').each(function() {
+            $(this).removeAttr('asc');
+        });
+        if (asc) $(this).attr('asc', 'asc');
+        
+        sortResults(id, asc);
+    });
+        
+    showResults();
+});
+
+function sortResults(prop, asc) {
+    arr = arr.sort(function(a, b) {
+        if (asc) return (a[prop] > b[prop]);
+        else return (b[prop] > a[prop]);
+    });
+    showResults();
+}
+
+function showResults () {
+    var html = '';
+    for (var e in arr) {
+        record = arr[e];
+        $("#team_table_body").append("<tr class='teamRow' id=" + e + "><td id='teamRowPosition'>" + record.position + "</td><td class='teamRowFirstName'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + record.team_name + "</td><td id='teamRowMilestone'>" + record.team_donation_milestone_candles + "</td><td id='teamRowEmails'>" + record.team_email_milestone_candles + "</td><td id='teamRowEvents'>" + record.team_event_milestone_candles + "</td><td id='teamRowTotal'>" + record.team_candles + "</td></tr>");
+    }
+}
+
+
+
+		$(document).ready(function(){
+			$("#system").addClass("highlight");
+  			$(".tab").on("click",function(){
+				$(".highlight").removeClass("highlight");
+    			$(this).toggleClass("highlight");
+				name = $(this).attr("name");
+				$(".text").hide();
+				$("[name='"+name+"']").show();
+			if (name=="sweet" || "awesome") {
+				$("#howItWorksCheck").css("visibility", "hidden");
+				$("#team_table_body").css("visibility", "hidden");
+				$("#forScroll").css("visibility", "hidden");
+				$("#art").css("visibility", "hidden");
+				$(".search").css("visibility", "hidden");
+			}
+			else {
+				$("#howItWorksCheck").css("visibility", "visible");
+				$("#team_table_body").css("visibility", "visible");
+				$("#forScroll").css("visibility", "visible");
+				$("#art").css("visibility", "visible");
+				$(".search").css("visibility", "visible");
+			}
+			});
+		}); //end document ready
+
+
+	</script>
+    
+<link href="css/Css.css" rel="stylesheet" type="text/css" />
+<body id="container" onload="">
+	<div id="main"> 
+		<div id="top">
+			<div id="header">
+				<div id="links">
+					<ul class="leftNav">
+						<li class="leftLink"><a href="home.html" >Home</a></li>
+						<li class="leftLink"><a href="howitworks.html" >How It Works</a></li>
+					</ul>
+					<ul class="rightNav">
+						<li class="rightLink"><a href="signup.html">Sign Up</a></li>
+						<li class="rightLink"><a href="http://bit.ly/SJNLot">Donate</a></li>
+					</ul>
+				</div><!-- end links -->
+				<div id="social">
+					<ul id="socialList">
+						<li><a id="twitter" href="http://bit.ly/SBBKAi" target="_blank">Twitter</a></li>
+						<li><a id="facebook" href="http://on.fb.me/SBBEZj" target="_blank">facebook</a></li>
+					</ul>
+				</div><!-- end social -->
+                <div id="pagesLinks">
+                	<a href="teamList.html" id="generalDown" class="pagesLink"></a>
+                    <a href="greekList.html" id="greeksDown" class="pagesLink"></a>
+                    <a href="corpsList.html" id="corpsDown" class="pagesLink"></a>
+                </div><!-- end pagesLinks -->
+				</div><!-- end header -->
+			
+			<!-- <div class="loggedIn">
+				<p class="loggedIn">Scott Welch | <a class ="signOut" href="#">Sign Out</a></p>
+			</div> -->
+			<div id="howItWorksBkg">
+				<div id="pagesHeaderBkg">
+					<h2 id="pagesHeaderTxt">Cadets For Cure</h2>
+                    <ul id="pagesBack">
+                    	<li class="pagesBackLink"><a href="howitworks_general.html">General Teams</a>&nbsp;-</li>
+                   		<li class="pagesBackLink"><a href="howitworks.html">How It Works</a>&nbsp;-</li> 
+                    	<li class="pagesBackLink"><a href="home.html">Home</a></li>
+                    </ul>
+				</div>
+                <label class="search">Search:&nbsp;&nbsp;<input id="searchBox" type="text" name="teamName"></label>
+                
+                <div id="explanation">
+                	<div id="tabs">
+                    	<div id="system" class="tab" name="cool">
+                        	<p>Overview</p>
+                        </div>
+                        <div id="faq" class="tab" name="sweet">
+                        	<p>Milestones</p>
+                        </div>
+                        <div id="comment" class="tab" name="awesome">
+                        	<p>Emails</p>
+                        </div>
+                        <div id="comment" class="tab" name="shizam">
+                        	<p>Events</p>
+                        </div>
+                    </div><!-- end tabs -->
+                    <div class="text" name="cool">
+                    	<div id="intro">
+                        	<h3>Corps Candles System</h3>
+                            <p>VT Relay Candles is a company-based competition that rewards points (candles) to companies that engage in Relay’s activities.  Participants can win points for their company in three ways:  achieve <b>milestones</b> by receiving donations, send <b>emails</b>, and attend Relay <b>events</b>.</p>
+                        </div><!-- end intro -->
+                        <div id="ways">
+                        	<div class="way">
+                                <h3>Milestones</h3>
+                            	<p>A milestone is a level of money raised.  There are several milestones.  Each milestone you pass you will receive the milestone dollar amount in candles.<br \><br \>Ex. You have reached the $100 milestone because you have raised $110. You will receive 100 candles for reaching the $100 milestone.
+</p>
+                            </div>
+                        	<div class="divider">
+                            </div>
+                            <div class="way">
+                            	<h3>Emails</h3>
+                            	<p>Send emails through the vtrelay.org website to receive candles.  Each email you send you will receive 10 candles.  Send as many as you want.<br \><br \>Ex.  You have sent 10 emails through the vtrelay.org website.  You will receive 100 candles.
+</p>
+                            </div>
+                            <div class="divider">
+                            </div>
+                            <div class="way">
+                            	<h3>Events</h3>
+                            	<p>Attend VT Relay For Life events to receive candles.  Write your name down to at the cash register to receive candles for attending.  Events include:  Percentage nights, kickoff, team meetings, etc.  <br /><br /><b>Hokie Passport support coming soon!</b>
+</p>
+                            </div>
+                        </div><!-- end ways -->
+                    </div><!-- end cool -->
+                    
+                    
+                    
+                    <div class="text hideTab" id="sweet" name="sweet">
+                    	<div id="milestones">
+                        	<h3>Milestone Candle Value</h3>
+                            <p>$100 = 100 candles<br /><br />
+		$250 = 250 candles<br /><br />
+		$350 = 350 candles<br /><br />
+		$500 = 500 candles<br /><br />
+		$750 = 750 candles<br /><br />
+		$1,000 = 1,000 candles<br /><br />
+		$1,500 = 1,500 candles<br /><br />
+		$2,500 and up = 2,500 candles for every $2,500 you raise
+</p>
+                        </div><!-- end milestones -->
+                        <div class="divider"></div>
+                        <div id="milestoneDescription">
+                        	<h3>Description</h3>
+                        	<p>A milestone is a level of money raised.  There are several milestones.  Each milestone you pass you will receive the milestone dollar amount in candles.<br /><br />
+
+Ex.  You have reached the $100 milestone because you have raised $110.  You will receive 100 candles for reaching the $100 milestone.  You will NOT receive 10 extra candles for raising $10 over the milestone.  The next time you receive candles will be when you have raised a total of $250.  You will receive an additional 250 candles for surpassing this milestone.  You will then have a grand total of 350 candles.
+</p>
+							<!--<table>
+                            	<tr>
+                                	<th>Donations</th>
+                                    <th>Current Money Raised</th>
+                                    <th>Current Milestone Achieved</th>
+                                    <th>Current Candles Received</th>
+                                </tr>
+                                <tr>
+                                	<td>$20</td><td>$20</td><td>0</td><td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>$100</td><td>$120</td><td>$100</td><td>100</td>
+                                </tr>
+                                <tr>
+                                    <td>$40</td><td>$160</td><td>0</td><td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>$90</td><td>$250</td><td>$250</td><td>250</td>
+                                </tr>
+                            </table>-->
+                        </div><!-- end milestoneDescription -->
+                    </div><!-- end sweet -->
+                    
+                    
+                    
+                    <div class="text hideTab" id="awesome" name="awesome">
+                    	<div id="emails">
+                        	<h3>Emails Candle Value</h3>
+                            <p>1 email = 30 candles</p>
+                        </div><!-- end emails -->
+                        <div class="divider"></div>
+                        <div id="emailsDescription">
+                        	<h3>Description</h3>
+                        	<p>Relay’s number one fundraising tool is the emails sent by participants.  On average, one email raises $28 towards the cure.<br /><br />
+                            
+Each email you send through the vtrelay.org website, your company will receive 30 candles.  Send as many as you want.<br /><br />
+
+Instructions to send emails on vtrelay.org:<br /><br />
+1.	Login<br /><br />
+2.	Scroll down until you see "My Tools"<br /><br />
+3.	Click on “compose an email”
+
+</p>
+						<div id="emailsWeb"></div>
+					</div><!-- end emailsDescription -->
+                  </div><!-- end awesome -->
+                    
+                    
+                    <div class="text hideTab" id="shizam" name="shizam">
+                    	<div id="emails">
+                        	<h3>Events Candle Value</h3>
+                            <p>1 email = 30 candles</p>
+                        </div><!-- end emails -->
+                        <div class="divider"></div>
+                        <div id="emailsDescription">
+                        	<h3>Description</h3>
+                        	<p>Attend VT Relay For Life events to receive candles.  Write your name down at the cash register to receive candles for attending.  Events include:  Percentage nights, kickoff, team meetings, etc.  Upcoming events will be posted on the home page of this website.  <br /><br /><b>Hokie Passport support coming soon!</b>
+</p>
+
+                        </div><!-- emailsDescription -->
+                    </div><!-- end shizam -->
+                    
+                    
+                    
+                    
+                    
+                    
+                </div><!-- end explanation -->
+				
+				
+				<div id="art">
+                </div>	
+				<div id="howItWorksCheck">
+					<table id="sorterHeader">
+						<tr>
+							<th id="points" class="sorterPosition">Pos.</th>
+							<th id="fname" class="sorterTeamName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Team Name</th>
+							<th id="signup" class="sorterOther">Milestone</th>
+							<th id="donations" class="sorterOther">Emails</th>
+							<th class="sorterOther">Events</th>
+							<th class="sorterOther">Total</th>
+						</tr>
+					</table>
+					<div id="forScroll" style="visibility:hidden;">
+						<table id="table">
+							<tbody id="team_table_body">		
+							</tbody>
+						</table><!-- end table -->
+					</div><!-- end forScroll -->
+				</div><!-- end howItWorksCheck -->
+                
+                
+			</div><!-- end howItWorksBkg -->
+            <div id="feedback">
+            <div id="feedbackTab"></div>
+            <div id="feedbackBody">
+            	<div id="comments">
+                	<h2>Comments/Suggestions</h2>
+                    <textarea class="commentsTxt" id="commentIn" type="text" name="Comments"></textarea><br />
+                	<input id="commentsSubmit"  onclick="sendComment()" type="submit" value="Submit"/>
+              </div><!-- end comments -->
+                <div id="problems">
+						<h2>Problems?</h2><br \>
+						<label id="email">Email:</label><input id ="emailIn" class="emailBox" type="text" name="Email"/><br />
+						<label id="problem">Problem:&nbsp;</label><textarea id ="problemIn" class="problemBox" type="text" name="Comments"></textarea><br />
+						<input id="problemsSubmit" onclick="sendemail()" type="submit" value="Submit"/>
+                </div><!-- end problems -->
+          </div><!-- end feedbackBody -->
+        </div><!-- end feedback -->
+		</div><!-- end main -->
+	<!--</div>-->
+	
+	
+
+</body>
+
+<script type="text/javascript">
+	function sendemail(){
+	p = document.getElementById("problemIn").value;
+	e = document.getElementById("emailIn").value;
+	$.post("mail.php", { problem: p, email: e },
+		function(){
+			alert("Thank You for your Feedback!");
+			resetFeedback();
+		});
+	}
+	
+	function sendComment(){
+	c = document.getElementById("commentIn").value;
+	$.post("comment.php", { comment: c},
+		function(){
+			alert("Thank You for your Feedback!");
+			resetFeedback();
+		});
+	}
+	
+	function resetFeedback(){
+		document.getElementById("commentIn").value = "";
+		document.getElementById("problemIn").value = "";
+		document.getElementById("emailIn").value = "";
+		$("#feedbackBody").slideUp();
+		$("#feedbackBody").removeClass("up");
+	}
+
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36920407-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</html> 

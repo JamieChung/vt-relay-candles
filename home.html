@@ -1,0 +1,348 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>VT Relay Candles - Home</title>
+<link rel="shortcut icon" href="img/VT_Relay_Logo_bday_curved_favicon.png" />
+
+
+
+	 <!-- Custom scrollbars CSS -->
+    <link href="css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
+
+
+	
+	<!-- Scrollbar -->
+	
+	<!-- Get Google CDN's jQuery and jQuery UI with fallback to local -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+    <!-- mousewheel plugin -->
+    <script src="js/jquery.mousewheel.min.js"></script>
+    <!-- custom scrollbars plugin -->
+    <script src="js/jquery.mCustomScrollbar.js"></script>
+  
+</head>	
+	<script>
+	
+	//Scrollbar
+	    (function ($) {
+	        $(window).load(function () {
+	                $(".forScroll").mCustomScrollbar();
+	        });
+	    })(jQuery);
+        
+	  
+	</script>
+
+
+    
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"> </script>
+	<script>
+		function setupPage()
+		{
+			$.get("http://vtrelay.alwaysdata.net/events/homepage_events/", function (data,status) {
+				setupTable(data);
+			});
+			//$.get("http://vtrelay.alwaysdata.net/companies/donations/all/", function (data,status) {
+			//	var tit = 0;
+			//	for(cat in data){
+			//		tit = tit + parseInt(data[cat].company_donations);
+			//	}
+			//	tit = addCommas(tit);
+			//	document.getElementById("cashRaised").innerHTML = "$" + tit + " Raised";
+			//});
+		}
+		function setupTable(data)
+		{
+			var sponsor_title = '#sponsor_title';
+			var sponsor_paragraph = '#sponsor_paragraph';
+			var sponsor_image = '#sponsor_image';
+			var sponsor_candles = '#sponsor_candles';
+			var sponsor_date = '#sponsor_date';
+			
+			var sponsor_number = 1;
+			for(item in data) 
+			{
+				var current_title = sponsor_title + sponsor_number;
+				var current_paragraph = sponsor_paragraph + sponsor_number;
+				var current_image = sponsor_image + sponsor_number;
+				var current_candles = sponsor_candles + sponsor_number;
+				var date = sponsor_date + sponsor_number;
+				sponsor_number = sponsor_number+1;
+				record = data[item];
+				$(current_title).append(record.fields.name);
+				$(current_paragraph).append(record.fields.description);
+				$(current_image).attr("src", record.fields.image);
+				$(current_candles).append(record.fields.candles_rewarded+' candles');
+				
+				//var d1=new Date(record.fields.date);
+				//d1.toString('dddd, MMMM ,yyyy')  //returns "Monday, June 29,2009"
+				
+				//$(date).append(d1);
+				
+				
+				
+				var m_names = new Array("January", "February", "March", 
+"April", "May", "June", "July", "August", "September", 
+"October", "November", "December");
+
+var d = new Date(record.fields.date);
+var curr_date = d.getDate();
+curr_date++;
+var sup = "";
+if (curr_date == 1 || curr_date == 21 || curr_date ==31)
+   {
+   sup = "st";
+   }
+else if (curr_date == 2 || curr_date == 22)
+   {
+   sup = "nd";
+   }
+else if (curr_date == 3 || curr_date == 23)
+   {
+   sup = "rd";
+   }
+else
+   {
+   sup = "th";
+   }
+
+var curr_month = d.getMonth();
+var curr_year = d.getFullYear();
+
+$(date).append(m_names[curr_month] + " " + curr_date + "<SUP>" + sup + "</SUP>");
+				
+				
+				
+				
+				
+				
+				/*var m_names = new Array("January", "February", "March", 
+"April", "May", "June", "July", "August", "September", 
+"October", "November", "December");
+				
+				
+				var d = new Date(record.fields.date);
+    			var curr_date = d.getDate();
+    			var curr_month = d.getMonth() + 1; //Months are zero based
+    			var curr_year = d.getFullYear();
+    			$(date).append(curr_date + "-" + m_names[curr_month]);*/
+				
+				//$(date).append(record.fields.date);
+				
+				
+				// $("#participant_table_body").append("<tr><td style='text-align:left;padding:10px 0 0 20px;'>"+record.fields.fname+" "+record.fields.lname+"</td><td> </td><td> "+record.fields.email+"</td><td></td><td> </td></tr>");
+			}
+		}
+		
+		
+		
+		// Feedback
+		$(document).ready(function () {
+		    //$(":not('#feedbackTab')").click(function () {
+		    //    $("#feedbackBody").slideDown();
+		    //});
+		    $("#feedbackTab").click(function (event) {
+		        if ($("#feedbackBody").hasClass("up")) {
+		            $("#feedbackBody").slideUp();
+		            $("#feedbackBody").removeClass("up");
+		        }
+		        else {
+		            $("#feedbackBody").slideDown();
+		            $("#feedbackBody").addClass("up");
+		        }
+		        event.stopPropagation();
+		    });
+		    $("#feedbackBody").click(function (event) {
+		        event.stopPropagation();
+		    });
+		    $("#background").click(function (event) {
+		        event.stopPropagation();
+		        if ($("#feedbackBody").hasClass("up")) {
+		            $("#feedbackBody").slideUp();
+		            $("#feedbackBody").removeClass("up");
+		        }
+
+		    });
+		});
+		
+	function addCommas(num)
+	{
+    var array = num.toString().split('');
+    var index = -3;
+    while (array.length + index > 0) {
+        array.splice(index, 0, ',');
+        // Decrement by 4 since we just added another unit to the array.
+        index -= 4;
+    }
+    return array.join('');
+	}
+		
+	</script>
+    
+<link href="css/Css.css" type="text/css" rel="stylesheet" />
+<body id="container" onLoad="setupPage()">
+	<div id="background">
+	<div id="main">
+    <div id="top">
+			<div id="header">
+				<div id="links">
+					<ul class="leftNav">
+						<li class="leftLink"><a href="home.html" >Home</a></li>
+						<li class="leftLink"><a href="howitworks.html" >How It Works</a></li>
+					</ul>
+					<ul class="rightNav">
+						<li class="rightLink"><a href="signup.html">Sign Up</a></li>
+						<li class="rightLink"><a href="http://bit.ly/SJNLot">Donate</a></li>
+					</ul>
+				</div><!-- end links -->
+				<div id="social">
+					<ul id="socialList">
+						<li><a id="twitter" href="http://bit.ly/SBBKAi" target="_blank">Twitter</a></li>
+						<li><a id="facebook" href="http://on.fb.me/SBBEZj" target="_blank">facebook</a></li>
+					</ul>
+				</div><!-- end social -->
+                <div id="pagesLinks">
+                	<a href="teamList.html" id="generalDown" class="pagesLink"></a>
+                    <a href="greekList.html" id="greeksDown" class="pagesLink"></a>
+                    <a href="corpsList.html" id="corpsDown" class="pagesLink"></a>
+                </div><!-- end pagesLinks -->
+			</div><!-- end header -->
+			<div class="textRaised">
+				<div style="float:left;">
+					 <!--<h1 id="cashRaised" class="textRaised">$$$$$$ Raised</h1>
+					<img src="img/underline.png"  class="textRaised"></img>-->
+				</div>
+				<div style="float:right;">
+					<!--<h1 class="textRaised" >521 Candles</h1>
+					<img src="img/underline.png" id="candles" class="textRaised"></img>-->
+				</div>
+			</div><!-- end textRaised -->
+			<div id="teamBoxes">
+				<div class="teamBox">
+					<a href="corpsList.html" id="cadets">Cadets For Cure</a>
+				</div>
+				<div class="teamBox">
+					<a href="greekList.html" id="greeks">Greeks For Life</a>
+				</div>
+				<div class="teamBox">
+					<a href="teamList.html" id="general">General Teams</a>
+				</div><!-- end teamBox -->
+			</div><!-- end teamBoxes -->
+		</div><!-- end top -->
+		<div id="idk">
+			<div class="sponsor" id="sponsor1">
+				<div class="sponsorHeader">
+                	<h3 id="sponsor_title1" class="sponsor_title"></h3>
+                </div>
+                <img src="" id="sponsor_image1" class="sponsor_image"></img>
+                <div id="sponsor_candles1" class="sponsor_candles"></div>
+				<div id="sponsor_date1" class="sponsor_candles"></div>
+				<p></p>
+                <div class="forScroll">
+                	<p id="sponsor_paragraph1" class="sponsor_paragraph"></p>
+                </div>
+			</div>
+			<div class="sponsor" id="sponsor2">
+				<div class="sponsorHeader">
+                	<h3 id="sponsor_title2" class="sponsor_title"></h3>
+                </div>
+                <img src="" id="sponsor_image2" class="sponsor_image"></img>
+                <div id="sponsor_candles2" class="sponsor_candles"></div>
+				<div id="sponsor_date2" class="sponsor_candles"></div>
+				<p></p>
+                <div class="forScroll">
+                	<p id="sponsor_paragraph2" class="sponsor_paragraph"></p>
+                </div>
+			</div>
+			<div class="sponsor" id="sponsor3">
+				<div class="sponsorHeader">
+                	<h3 id="sponsor_title3" class="sponsor_title"></h3>
+                </div>
+                <img src="" id="sponsor_image3" class="sponsor_image"></img>
+                <div id="sponsor_candles3" class="sponsor_candles"></div>
+				<div id="sponsor_date3" class="sponsor_candles"></div>
+				<p></p>
+                <div class="forScroll">
+                	<p id="sponsor_paragraph3" class="sponsor_paragraph"></p>
+                </div>	
+			</div>
+			<div class="sponsor" id="sponsor4">
+				<div class="sponsorHeader">
+                	<h3 id="sponsor_title4" class="sponsor_title"></h3>
+                </div>
+                <img src="" id="sponsor_image4" class="sponsor_image"></img>
+                <div id="sponsor_candles4" class="sponsor_candles"></div>
+				<div id="sponsor_date4" class="sponsor_candles"></div>
+				<p></p>
+                <div class="forScroll" >
+                	<p id="sponsor_paragraph4" class="sponsor_paragraph"></p>
+                </div>
+			</div><!-- end sponsor -->
+		</div><!-- end idk -->
+        <div id="beta"></div>
+         <div id="feedback">
+            <div id="feedbackTab"></div>
+            <div id="feedbackBody">
+            	<div id="comments">
+                	<h2>Comments/Suggestions</h2>
+                    <textarea class="commentsTxt" id="commentIn" type="text" name="Comments"></textarea><br />
+                	<input id="commentsSubmit"  onclick="sendComment()" type="submit" value="Submit"/>
+              </div><!-- end comments -->
+                <div id="problems">
+						<h2>Problems?</h2><br \>
+						<label id="email">Email:</label><input id ="emailIn" class="emailBox" type="text" name="Email"/><br />
+						<label id="problem">Problem:&nbsp;</label><textarea id ="problemIn" class="problemBox" type="text" name="Comments"></textarea><br />
+						<input id="problemsSubmit" onClick="sendemail()" type="submit" value="Submit"/>
+                </div><!-- end problems -->
+          </div><!-- end feedbackBody -->
+      </div><!-- end feedback -->
+	</div><!-- end main -->
+	</div><!-- end background -->
+</body>
+
+
+
+
+<script type="text/javascript">
+
+	function sendemail(){
+	p = document.getElementById("problemIn").value;
+	e = document.getElementById("emailIn").value;
+	$.post("mail.php", { problem: p, email: e },
+		function(){
+			alert("Thank You for your Feedback!");
+			resetFeedback();
+		});
+	}
+	
+	function sendComment(){
+	c = document.getElementById("commentIn").value;
+	$.post("comment.php", { comment: c},
+		function(){
+			alert("Thank You for your Feedback!");
+			resetFeedback();
+		});
+	}
+	
+	function resetFeedback(){
+		document.getElementById("commentIn").value = "";
+		document.getElementById("problemIn").value = "";
+		document.getElementById("emailIn").value = "";
+		$("#feedbackBody").slideUp();
+		$("#feedbackBody").removeClass("up");
+	}
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36920407-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</html> 
