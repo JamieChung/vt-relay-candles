@@ -11,9 +11,9 @@
     <link href="css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
 
 
-	
+
 	<!-- Scrollbar -->
-	
+
 	<!-- Get Google CDN's jQuery and jQuery UI with fallback to local -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -22,28 +22,28 @@
     <script src="js/jquery.mousewheel.min.js"></script>
     <!-- custom scrollbars plugin -->
     <script src="js/jquery.mCustomScrollbar.js"></script>
-    
-    
-    
-    
-    
-</head>	
+
+
+
+
+
+</head>
 	<script>
-	
+
 	//Scrollbar
 	    (function ($) {
 	        $(window).load(function () {
 	                $("#forScroll").mCustomScrollbar();
 	        });
 	    })(jQuery);
-        
-	  
+
+
 	</script>
 
 	<script>
 	    var info = "";
 	    function setupPage() {
-	        $.get("http://vtrelay.alwaysdata.net/companies/corps/candles/all/", function (data, status) {
+	        $.get("/companies/corps/candles/all/", function (data, status) {
 	            for (var item in data) {
 	                record = data[item];
 	                if (record.company_type == "CT") {
@@ -90,8 +90,8 @@
 	        setupTable(data);
 	        info = data;
 	    }
-		
-		
+
+
 // Search bar
 
 		$(document).ready(function ($) {
@@ -102,7 +102,7 @@ jQuery.expr[":"].contains = jQuery.expr.createPseudo(function(arg) {
   });
   function listFilter(list) {
     var input = $("#searchBox");
- 
+
     $(input)
       .change( function () {
         var filter = $(this).val();
@@ -119,15 +119,15 @@ jQuery.expr[":"].contains = jQuery.expr.createPseudo(function(arg) {
         $(this).change();
     });
   }
- 
+
   $(function () {
     listFilter($(".teamRow"));
   });
 }(jQuery));
-		
-		
+
+
 		//Feedback slide up
-		
+
 		$(document).ready(function () {
 		    //$(":not('#feedbackTab')").click(function () {
 		    //    $("#feedbackBody").slideDown();
@@ -155,30 +155,30 @@ jQuery.expr[":"].contains = jQuery.expr.createPseudo(function(arg) {
 
 		    });
 		});
-		
-		
+
+
 		//Column sorting
-	
+
 		//$('#sorterHeader tr th').hover(function() {
 		//$(this).addClass
-			
-			
-			
+
+
+
 
 $(function() {
     $('#sorterHeader tr th').click(function () {
         var id = $(this).attr('id');
         var asc = (!$(this).attr('asc')); // switch the order, true if not set
-        
+
         // set asc="asc" when sorted in ascending order
         $('#sorterHeader tr th').each(function() {
             $(this).removeAttr('asc');
         });
         if (asc) $(this).attr('asc', 'asc');
-        
+
         sortResults(id, asc);
     });
-        
+
 });
 
 function sortResults(prop, asc) {
@@ -190,7 +190,7 @@ function sortResults(prop, asc) {
             thing1 = thing1.toLowerCase();
             thing2 = thing2.toLowerCase();
         }
-        if (asc){     
+        if (asc){
             if (thing1 > thing2) {
                 return 1;}
             if (thing1 < thing2) {
@@ -199,7 +199,7 @@ function sortResults(prop, asc) {
                 return (compareThings(a["team_name"], b["team_name"]));
             }
         }
-        else{     
+        else{
             if (thing2 > thing1) {
                 return 1;}
             if (thing2 < thing1) {
@@ -208,8 +208,8 @@ function sortResults(prop, asc) {
                return (compareThings(a["team_name"], b["team_name"]));
             }
         }
-        
-        
+
+
        // return (compareThings(a[prop] , b[prop]));
        // else return (compareThings(b[prop] , a[prop], a, b));
     });
@@ -238,9 +238,9 @@ function showResults (arr) {
 }
 
 	</script>
-    
+
 <body id="container" onload="setupPage()">
-	<div id="main"> 
+	<div id="main">
 		<div id="top">
 			<div id="header">
 				<div id="links">
@@ -265,7 +265,7 @@ function showResults (arr) {
                     <a href="corpsList.html" id="corpsUp" class="pagesLink"></a>
                 </div><!-- end pagesLinks -->
 			</div>
-			
+
 			<!-- <div class="loggedIn">
 				<p class="loggedIn">Scott Welch | <a class ="signOut" href="#">Sign Out</a></p>
 			</div> -->
@@ -275,12 +275,12 @@ function showResults (arr) {
 					<h2 id="pagesHeaderTxt">Corps Companies</h2>
                     <ul id="pagesBack">
                     	<!-- <li class="pagesBackLink"><a href="#">Individual</a>&nbsp;-</li> -->
-                   		<li class="pagesBackLink"><a href="teamList.html">Corps Companies</a>&nbsp;-</li> 
+                   		<li class="pagesBackLink"><a href="teamList.html">Corps Companies</a>&nbsp;-</li>
                     	<li class="pagesBackLink"><a href="home.html">Home</a></li>
                     </ul>
 				</div>
                 <label class="search">Search:&nbsp;&nbsp;<input id="searchBox" type="text" name="teamName"/></label>
-                        		
+
 				<div id="pagesCheck">
 					<table id="sorterHeader">
 						<tr>
@@ -295,7 +295,7 @@ function showResults (arr) {
 					<img id="loadingImg" src="img/loading_bar.gif"/>
 					<div id="forScroll">
 						<table id="table">
-							<tbody id="team_table_body">		
+							<tbody id="team_table_body">
 							</tbody>
 						</table><!-- end table -->
 					</div><!-- end forScroll -->
@@ -319,8 +319,8 @@ function showResults (arr) {
         </div><!-- end feedback -->
 		</div><!-- end main -->
 	</div>
-	
-	
+
+
 
 </body>
 
@@ -341,4 +341,4 @@ function showResults (arr) {
   })();
 
 </script>
-</html> 
+</html>

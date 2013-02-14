@@ -10,7 +10,7 @@
     <link href="css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
 
 
-	
+
 	<!-- Scrollbar -->
 	<!-- Get Google CDN's jQuery and jQuery UI with fallback to local -->
       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
@@ -20,23 +20,23 @@
     <script src="js/jquery.mCustomScrollbar.js"></script>
     <!-- mousewheel plugin -->
     <script src="js/jquery.mousewheel.min.js"></script>
-    
-</head>	
+
+</head>
 	<script>
-	
+
 	//Scrollbar
 	    (function ($) {
 	        $(window).load(function () {
 	                $("#forScroll").mCustomScrollbar();
 	        });
 	    })(jQuery);
-	  
+
 	</script>
 
 	<script>
 		var info = "";
 	    function setupPage() {
-	        $.get("http://vtrelay.alwaysdata.net/companies/candles/all/", function (data, status) {
+	        $.get("/companies/candles/all/", function (data, status) {
 	            for (var item in data) {
 	                record = data[item];
 	                if (record.company_type == "GT") {
@@ -63,14 +63,14 @@
 	        }
 			jQuery("#forScroll").mCustomScrollbar("update");
 	    }
-		
-		
+
+
 		/*"<tr id='"+x+"' class='greekRow'><td id='greekRowPosition'>"+obj.fields[x].points+"</td><td class='greekRowFirstName'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+obj.fields[x].fname+" "+obj.fields[x].lname+"</td><td id='greekRowMilestone'>"+obj.fields[x].signup+"</td><td id='greekRowEmails'>"+obj.fields[x].donations+"</td><td id='greekRowEvents'>"+obj.fields[x].donations+"</td><td id='greekRowTotal'>"+obj.fields[x].donations+"</td></tr>"*/
-		
+
 
 
 //Feedback slide up
-		
+
 		function sortResult(data) {
 	        data = data.sort(function (a, b) {
 	            var prop = "company_candles_total";
@@ -91,10 +91,10 @@
 	        setupTable(data);
 	        info = data;
 	    }
-		
-		
-		
-		
+
+
+
+
 		$(document).ready(function () {
 		    $("#feedbackTab").click(function (event) {
 		        if ($("#feedbackBody").hasClass("up")) {
@@ -131,7 +131,7 @@ jQuery.expr[":"].contains = jQuery.expr.createPseudo(function(arg) {
   });
   function listFilter(list) {
     var input = $("#searchBox");
- 
+
     $(input)
       .change( function () {
         var filter = $(this).val();
@@ -147,42 +147,42 @@ jQuery.expr[":"].contains = jQuery.expr.createPseudo(function(arg) {
         $(this).change();
     });
   }
- 
+
   $(function () {
     listFilter($(".greekRow"));
   });
 }(jQuery));
-			
+
 			/*function setupTable(data)
 		{
-			for(item in data) 
+			for(item in data)
 			{
 				record = data[item]
 				$("#team_table_body").append("<tr><td style='text-align:left;padding:10px 0 0 20px;'>"+record.fields.name+"</td><td> </td><td> "+record.fields.team_type+"</td><td></td><td> </td></tr>");
 			}
 		}
 		*/
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
 			//Column sorting
 $(function() {
     $('#sorterHeader tr th').click(function() {
         var id = $(this).attr('id');
         var asc = (!$(this).attr('asc')); // switch the order, true if not set
-        
+
         // set asc="asc" when sorted in ascending order
         $('#sorterHeader tr th').each(function() {
             $(this).removeAttr('asc');
         });
         if (asc) $(this).attr('asc', 'asc');
-        
+
         sortResults(id, asc);
     });
-        
+
 });
 
 function sortResults(prop, asc) {
@@ -194,7 +194,7 @@ function sortResults(prop, asc) {
             thing1 = thing1.toLowerCase();
             thing2 = thing2.toLowerCase();
         }
-        if (asc){     
+        if (asc){
             if (thing1 > thing2) {
                 return 1;}
             if (thing1 < thing2) {
@@ -203,7 +203,7 @@ function sortResults(prop, asc) {
                 return (compareThings(a["company_name"], b["company_name"]));
             }
         }
-        else{     
+        else{
             if (thing2 > thing1) {
                 return 1;}
             if (thing2 < thing1) {
@@ -212,8 +212,8 @@ function sortResults(prop, asc) {
                return (compareThings(a["company_name"], b["company_name"]));
             }
         }
-        
-        
+
+
        // return (compareThings(a[prop] , b[prop]));
        // else return (compareThings(b[prop] , a[prop], a, b));
     });
@@ -242,10 +242,10 @@ function showResults () {
 }
 
 	</script>
-    
+
 <link href="css/Css.css" rel="stylesheet" type="text/css" />
 <body id="container" onload="setupPage()">
-	<div id="main"> 
+	<div id="main">
 		<div id="top">
 			<div id="header">
 				<div id="links">
@@ -270,7 +270,7 @@ function showResults () {
                     <a href="corpsList.html" id="corpsDown" class="pagesLink"></a>
                 </div><!-- end pagesLinks -->
 			</div>
-			
+
 			<!-- <div class="loggedIn">
 				<p class="loggedIn">Scott Welch | <a class ="signOut" href="#">Sign Out</a></p>
 			</div> -->
@@ -279,11 +279,11 @@ function showResults () {
 					<h2 id="pagesHeaderTxt">Greeks For Life</h2>
                     <ul id="pagesBack">
                     	<!-- <li class="pagesBackLink"><a href="#">Individual</a>&nbsp;-</li> -->
-                   		<li class="pagesBackLink"><a href="greekList.html">Greeks For Life</a>&nbsp;-</li> 
+                   		<li class="pagesBackLink"><a href="greekList.html">Greeks For Life</a>&nbsp;-</li>
                     	<li class="pagesBackLink"><a href="home.html">Home</a></li>
                     </ul>
 				</div>
-                
+
                 <label class="search">Search:&nbsp;&nbsp;<input id="searchBox" type="text" name="teamName"></label>
 				<div id="greekPagesCheck">
 					<table id="sorterHeader">
@@ -300,7 +300,7 @@ function showResults () {
 					<img id="loadingImg" src="img/loading_bar.gif"/>
 					<div id="forScroll">
 						<table id="table">
-							<tbody id="team_table_body">		
+							<tbody id="team_table_body">
 							</tbody>
 						</table><!-- end table -->
 					</div><!-- end forScroll -->
@@ -326,8 +326,8 @@ function showResults () {
         </div><!-- end feedback -->
 		</div><!-- end main -->
 	<!--</div>-->
-	
-	
+
+
 
 </body>
 
@@ -342,7 +342,7 @@ function showResults () {
 			resetFeedback();
 		});
 	}
-	
+
 	function sendComment(){
 	c = document.getElementById("commentIn").value;
 	$.post("comment.php", { comment: c},
@@ -351,7 +351,7 @@ function showResults () {
 			resetFeedback();
 		});
 	}
-	
+
 	function resetFeedback(){
 		document.getElementById("commentIn").value = "";
 		document.getElementById("problemIn").value = "";
@@ -372,4 +372,4 @@ function showResults () {
   })();
 
 </script>
-</html> 
+</html>

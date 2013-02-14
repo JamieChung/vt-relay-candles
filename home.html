@@ -41,10 +41,10 @@
 	<script>
 		function setupPage()
 		{
-			$.get("http://vtrelay.alwaysdata.net/events/homepage_events/", function (data,status) {
+			$.get("/events/homepage_events/", function (data,status) {
 				setupTable(data);
 			});
-			//$.get("http://vtrelay.alwaysdata.net/companies/donations/all/", function (data,status) {
+			//$.get("/companies/donations/all/", function (data,status) {
 			//	var tit = 0;
 			//	for(cat in data){
 			//		tit = tit + parseInt(data[cat].company_donations);

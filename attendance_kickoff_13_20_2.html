@@ -9,9 +9,9 @@
     <link href="css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
 
 
-	
+
 		<!-- Scrollbar -->
-	
+
 	<!-- Get Google CDN's jQuery and jQuery UI with fallback to local -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -20,24 +20,24 @@
     <script src="js/jquery.mousewheel.min.js"></script>
     <!-- custom scrollbars plugin -->
     <script src="js/jquery.mCustomScrollbar.js"></script>
-	
-	
+
+
 	<script>
-	
+
 	//Scrollbar
 	    (function ($) {
 	        $(window).load(function () {
 	                $("#forScroll").mCustomScrollbar();
 	        });
 	    })(jQuery);
-	  
+
 	</script>
-	
-	
+
+
 	<link href="css/Css.css" rel="stylesheet" type="text/css" />
 </head>
 <body id="container" onLoad="setupPage()">
-	<div id="main"> 
+	<div id="main">
 		<div id="top">
 			<div id="header">
 				<div id="links">
@@ -62,7 +62,7 @@
                     <a href="#" id="corpsDown" class="pagesLink"></a>
                 </div><!-- end pagesLinks -->
 			</div>
-			
+
 			<!-- <div class="loggedIn">
 				<p class="loggedIn">Scott Welch | <a class ="signOut" href="#">Sign Out</a></p>
 			</div> -->
@@ -81,7 +81,7 @@
 						</table>
 						<div id="forScroll">
 							<table id="table">
-								<tbody id="team_table_body">		
+								<tbody id="team_table_body">
 								</tbody>
 							</table><!-- end table -->
 						</div><!-- end forScroll -->
@@ -90,10 +90,10 @@
                 <div id="divider"></div>
 			</div><!-- end signUpBkg -->
 		</div><!-- end top -->
-		<!-- <div style="background-image:url('img/sponsor_divider.jpg');float:left;width:100%;height:50px;">			
+		<!-- <div style="background-image:url('img/sponsor_divider.jpg');float:left;width:100%;height:50px;">
 		</div> -->
 		<!--<div id="thanksSign">
-			
+
 		</div>-->
         <div id="feedback">
             <div id="feedbackTab"></div>
@@ -112,16 +112,16 @@
           </div><!-- end feedbackBody -->
         </div><!-- end feedback -->
 	</div><!-- end main -->
-</body>	
-	
+</body>
 
-	
+
+
 	<script>
 	//Get data
 	    var info = "";
 		function setupPage()
 		{
-			$.get("http://vtrelay.alwaysdata.net/participants1/", function (data,status) {
+			$.get("/participants1/", function (data,status) {
 				for (var item in data) {
 	                record = data[item];
 	                //if (record.team_type != "RT") {
@@ -132,9 +132,9 @@
 			    info = data;
 			});
 		}
-		
+
 		var string = "";
-		function setupTable(data) 
+		function setupTable(data)
 		{
 			for(x in data){
 			    string = string + "<tr id='" + data[x].participant_id + "' class='signUpTeamRow'><td onClick='highlightClick(event)'  class='signUpTeamRowFirstName'>" + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + data[x].participant_first_name + " "+data[x].participant_last_name+"</td></tr>";
@@ -142,29 +142,29 @@
 		document.getElementById("team_table_body").innerHTML = string;
 		jQuery("#forScroll").mCustomScrollbar("update");
 		}//end setupTable
-		
-		
+
+
 		/*function setupPage()
 		{
-			$.get("http://vtrelay.alwaysdata.net/teams/all/", function (data,status) {
+			$.get("/teams/all/", function (data,status) {
 				setupTable(data);
 			});
 		}
 		function setupTable(data)
 		{
-			for(item in data) 
+			for(item in data)
 			{
 				record = data[item]
 				$("#team_table_body").append("<tr><td style='text-align:left;padding:10px 0 0 20px;'>"+record.fields.name+"</td><td> </td><td> "+record.fields.team_type+"</td><td></td><td> </td></tr>");
 			}
 		}*/
-		
-		
-		
-		
+
+
+
+
 		//Feedback slide up
-		
-		
+
+
 		$(document).ready(function () {
 		    $("#feedbackTab").click(function (event) {
 		        if ($("#feedbackBody").hasClass("up")) {
@@ -189,13 +189,13 @@
 
 		    });
 		});
-		
 
-	
-	
-	
+
+
+
+
 	//Search filter
-	
+
 	//Creates a new event handler for uppercase letters entered by the user
 	$(document).ready(function ($) {
 jQuery.expr[":"].Contains = jQuery.expr.createPseudo(function(arg) {
@@ -203,11 +203,11 @@ jQuery.expr[":"].Contains = jQuery.expr.createPseudo(function(arg) {
         return jQuery(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
     }; //end return function
   });//end jQuery.expr
-	
+
 	//Takes an input
 	function listFilter(list) {
     var input = $(".signUpEntry");
-	
+
 	//filters the input
     $(input)
       .change( function () {
@@ -232,17 +232,17 @@ jQuery.expr[":"].Contains = jQuery.expr.createPseudo(function(arg) {
     	listFilter($(".signUpTeamRow"));
   	});//end function
 }(jQuery));//end document ready
-		
-		
+
+
 	function highlightClick(event) {
 	    if (document.getElementById("highlight") != null) {
 	        document.getElementById("highlight").id = "";
 	    }
 	    event.target.id = 'highlight';
-	} 
-		
-		
-		
+	}
+
+
+
 		//Highlight team
 		$(document).ready(function(){
 		    $(".signUpTeamRow").on("click", function () {
@@ -255,7 +255,7 @@ jQuery.expr[":"].Contains = jQuery.expr.createPseudo(function(arg) {
 		$("#signInSubmit").click(function(){
 		  	var arr = document.getElementById("highlight");
 			if($(arr).is(':visible')){
-				$.post("http://vtrelay.alwaysdata.net/events/registration/",
+				$.post("/events/registration/",
 					{
 						'id':arr.parentNode.id,
 				  		'guests':"0",
@@ -265,7 +265,7 @@ jQuery.expr[":"].Contains = jQuery.expr.createPseudo(function(arg) {
 				  		//alert("Data: " + data + "\nStatus: " + status);
 				  		if(status == "success") {
 				  			alert("Thank you for registering for this event!")
-							window.location = 'http://vtrelay.alwaysdata.net/attendance_kickoff_13_20_2.html'
+							window.location = '/attendance_kickoff_13_20_2.html'
 				  		} else {
 				  			alert("We could not find that email in our system :(")
 				  		}
@@ -276,8 +276,8 @@ jQuery.expr[":"].Contains = jQuery.expr.createPseudo(function(arg) {
 			}// end else
 		});//end #signUpSubmit
 	});//end document ready
-	
-	
+
+
 		$(function () {
 		    $('#sorterHeader tr th').click(function () {
 		        var id = $(this).attr('id');
@@ -323,12 +323,12 @@ jQuery.expr[":"].Contains = jQuery.expr.createPseudo(function(arg) {
 		    $('#team_table_body').html(html);
 		    alert(html);
 		}
-	
-	
-	
+
+
+
 	</script>
 
-	
+
 <script type="text/javascript">
 	function sendemail(){
 	p = document.getElementById("problemIn").value;
@@ -339,7 +339,7 @@ jQuery.expr[":"].Contains = jQuery.expr.createPseudo(function(arg) {
 			resetFeedback();
 		});
 	}
-	
+
 	function sendComment(){
 	c = document.getElementById("commentIn").value;
 	$.post("comment.php", { comment: c},
@@ -348,7 +348,7 @@ jQuery.expr[":"].Contains = jQuery.expr.createPseudo(function(arg) {
 			resetFeedback();
 		});
 	}
-	
+
 	function resetFeedback(){
 		document.getElementById("commentIn").value = "";
 		document.getElementById("problemIn").value = "";
@@ -369,4 +369,4 @@ jQuery.expr[":"].Contains = jQuery.expr.createPseudo(function(arg) {
   })();
 
 </script>
-</html> 
+</html>

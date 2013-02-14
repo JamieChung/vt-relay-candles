@@ -2,7 +2,7 @@
 var info = "";
 
 function setupPage() {
-    $.get(__proxy + "http://vtrelay.alwaysdata.net/teams/candles/all/", function (data, status) {
+    $.get(__proxy + "/teams/candles/all/", function (data, status) {
         for (item in data) {
             record = data[item];
             if (record.team_signup == true && record.team_type == "RT") {
